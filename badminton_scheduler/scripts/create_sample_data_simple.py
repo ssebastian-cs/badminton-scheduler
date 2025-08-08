@@ -5,7 +5,8 @@ Script to create sample data for the badminton scheduler app using the simplifie
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Add parent directory to path to import from main app
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from run import app, db, User, Availability, Feedback
 from datetime import datetime, date, timedelta

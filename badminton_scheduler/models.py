@@ -43,31 +43,43 @@ class Availability(db.Model):
     __tablename__ = 'availability'
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, index=True)
     date = db.Column(db.Date, nullable=False, index=True)
-    time_slot = db.Column(db.String(50), nullable=True)
+    time_slot = db.Column(db.String(50), nullable=True)  # Legacy field for backward compatibility
+    time_start = db.Column(db.Time, nullable=True, index=True)  # Start time for availability
+    time_end = db.Column(db.Time, nullable=True, index=True)    # End time for availability
+    is_all_day = db.Column(db.Boolean, default=True, index=True)  # Flag for all-day availability
     status = db.Column(db.Enum('available', 'tentative', 'not_available', name='availability_status'), 
-                      nullable=False, default='available')
+                      nullable=False, default='available', index=True)
     play_preference = db.Column(db.Enum('drop_in', 'book_court', 'either', name='play_preference'), 
                                nullable=True, default='either')
     notes = db.Column(db.Text, nullable=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     __table_args__ = (
-        db.UniqueConstraint('user_id', 'date', 'time_slot', name='unique_availability'),
+        db.UniqueConstraint('user_id', 'date', 'time_start', 'time_end', name='unique_availability_time'),
+        db.Index('idx_availability_date_user', 'date', 'user_id'),  # Composite index for common queries
+        db.Index('idx_availability_status_date', 'status', 'date'),  # For filtering by status and date
+        db.Index('idx_availability_user_date_created', 'user_id', 'date', 'created_at'),  # For user queries with ordering
     )
     
     def to_dict(self):
-        return {
+        result = {
             'id': self.id,
             'user_id': self.user_id,
             'date': self.date.isoformat(),
-            'time_slot': self.time_slot,
+            'time_slot': self.time_slot,  # Keep for backward compatibility
+            'time_start': self.time_start.strftime('%H:%M') if self.time_start else None,
+            'time_end': self.time_end.strftime('%H:%M') if self.time_end else None,
+            'is_all_day': self.is_all_day if self.is_all_day is not None else True,
             'status': self.status,
             'play_preference': self.play_preference,
             'notes': self.notes,
-            'created_at': self.created_at.isoformat()
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }
+        return result
     
     def __repr__(self):
         return f'<Availability {self.user_id} - {self.date} - {self.status}>'

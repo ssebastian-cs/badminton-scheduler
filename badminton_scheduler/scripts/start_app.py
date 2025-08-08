@@ -46,7 +46,7 @@ def start_server():
         print("📊 Database found!")
     
     print("\n🚀 Starting Flask server...")
-    print("📱 Frontend available at: http://localhost:5000/static_frontend.html")
+    print("📱 Frontend available at: http://localhost:5000/static/static_frontend.html")
     print("🔧 API available at: http://localhost:5000")
     print("❤️  Health check: http://localhost:5000/health")
     
@@ -62,7 +62,7 @@ def start_server():
     
     # Open browser automatically
     try:
-        webbrowser.open('http://localhost:5000/static_frontend.html')
+        webbrowser.open('http://localhost:5000/static/static_frontend.html')
     except:
         pass
     

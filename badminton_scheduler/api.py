@@ -361,30 +361,65 @@ def format_time_slot(start_time, end_time, is_all_day=False):
 @api_bp.route('/availability', methods=['GET'])
 @login_required
 def get_availability():
-    """Get availability for a specific date range."""
+    """Get availability for a specific date range with optimized queries."""
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
     user_id = request.args.get('user_id', type=int)
+    limit = request.args.get('limit', type=int, default=100)  # Pagination support
+    offset = request.args.get('offset', type=int, default=0)
     
-    query = Availability.query
+    # Build optimized query with joins for user information if needed
+    if current_user.is_admin and not user_id:
+        # Admin viewing all availability - join with user info
+        query = db.session.query(Availability, User.username, User.email).join(User)
+    else:
+        # Regular user or specific user query - no join needed
+        query = Availability.query
     
+    # Apply date filters with indexed columns
     if start_date:
-        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
-        query = query.filter(Availability.date >= start_date)
+        try:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+            query = query.filter(Availability.date >= start_date)
+        except ValueError:
+            return jsonify({'error': 'Invalid start_date format. Use YYYY-MM-DD'}), 400
     
     if end_date:
-        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
-        query = query.filter(Availability.date <= end_date)
+        try:
+            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+            query = query.filter(Availability.date <= end_date)
+        except ValueError:
+            return jsonify({'error': 'Invalid end_date format. Use YYYY-MM-DD'}), 400
     
+    # Apply user filter with authorization check
     if user_id:
         if not current_user.is_admin and user_id != current_user.id:
             return jsonify({'error': 'Unauthorized'}), 403
-        query = query.filter_by(user_id=user_id)
+        query = query.filter(Availability.user_id == user_id)
     elif not current_user.is_admin:
         # Non-admin users can only see their own availability by default
-        query = query.filter_by(user_id=current_user.id)
+        query = query.filter(Availability.user_id == current_user.id)
     
-    availability = query.order_by(Availability.date).all()
+    # Apply ordering and pagination for performance
+    if current_user.is_admin and not user_id:
+        # For admin queries with joins
+        query = query.order_by(Availability.date.desc(), Availability.created_at.desc())
+        total_count = query.count()
+        results = query.offset(offset).limit(limit).all()
+        
+        # Process joined results
+        availability = []
+        for avail, username, email in results:
+            avail_dict = avail.to_dict()
+            avail_dict['username'] = username
+            avail_dict['user_email'] = email
+            availability.append(avail_dict)
+    else:
+        # For regular user queries
+        query = query.order_by(Availability.date.desc(), Availability.created_at.desc())
+        total_count = query.count()
+        availability_objects = query.offset(offset).limit(limit).all()
+        availability = [avail.to_dict() for avail in availability_objects]
     
     # Enhance response with parsed time information
     enhanced_availability = []
@@ -557,22 +592,30 @@ def set_availability():
         return create_validation_error_response(f"Error processing time information: {str(e)}")
     
     # Find existing availability or create a new one
+    # Use the new unique constraint based on time_start and time_end
     availability = Availability.query.filter_by(
         user_id=current_user.id,
         date=avail_date,
-        time_slot=time_slot
+        time_start=start_time,
+        time_end=end_time
     ).first()
     
     if not availability:
         availability = Availability(
             user_id=current_user.id,
             date=avail_date,
-            time_slot=time_slot
+            time_slot=time_slot,  # Keep for backward compatibility
+            time_start=start_time,
+            time_end=end_time,
+            is_all_day=is_all_day
         )
         db.session.add(availability)
     
     # Update fields with validated data
     availability.status = status
+    availability.time_start = start_time
+    availability.time_end = end_time
+    availability.is_all_day = is_all_day
     if play_preference is not None:
         availability.play_preference = play_preference
     if notes is not None:
@@ -754,8 +797,11 @@ def update_availability(availability_id):
     except ValueError as e:
         return create_validation_error_response(str(e))
     
-    # Update time_slot
-    availability.time_slot = time_slot
+    # Update time fields
+    availability.time_slot = time_slot  # Keep for backward compatibility
+    availability.time_start = start_time
+    availability.time_end = end_time
+    availability.is_all_day = is_all_day
     
     try:
         db.session.commit()
@@ -1086,3 +1132,85 @@ def export_availability():
         'Content-Type': 'text/csv',
         'Content-Disposition': f'attachment; filename=availability_export_{date.today()}.csv'
     }
+
+@api_bp.route('/admin/availability/filtered', methods=['GET'])
+@admin_required
+def get_filtered_admin_availability():
+    """Get filtered availability data for admin with optimized queries and pagination."""
+    try:
+        # Parse query parameters
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
+        user_id = request.args.get('user_id', type=int)
+        status = request.args.get('status')
+        page = request.args.get('page', type=int, default=1)
+        per_page = min(request.args.get('per_page', type=int, default=50), 100)  # Max 100 per page
+        
+        # Build optimized query with eager loading
+        query = db.session.query(Availability, User.username, User.email)\
+                          .join(User)
+        
+        # Apply filters
+        if start_date:
+            try:
+                start_date_obj = datetime.strptime(start_date, '%Y-%m-%d').date()
+                query = query.filter(Availability.date >= start_date_obj)
+            except ValueError:
+                return jsonify({'error': 'Invalid start_date format. Use YYYY-MM-DD'}), 400
+        
+        if end_date:
+            try:
+                end_date_obj = datetime.strptime(end_date, '%Y-%m-%d').date()
+                query = query.filter(Availability.date <= end_date_obj)
+            except ValueError:
+                return jsonify({'error': 'Invalid end_date format. Use YYYY-MM-DD'}), 400
+        
+        if user_id:
+            query = query.filter(Availability.user_id == user_id)
+        
+        if status and status in ['available', 'tentative', 'not_available']:
+            query = query.filter(Availability.status == status)
+        
+        # Order by date (most recent first) and created_at for consistent pagination
+        query = query.order_by(Availability.date.desc(), Availability.created_at.desc())
+        
+        # Get total count for pagination info
+        total_count = query.count()
+        
+        # Apply pagination
+        offset = (page - 1) * per_page
+        results = query.offset(offset).limit(per_page).all()
+        
+        # Process results
+        availability_list = []
+        for avail, username, email in results:
+            avail_dict = avail.to_dict()
+            avail_dict['username'] = username
+            avail_dict['user_email'] = email
+            availability_list.append(avail_dict)
+        
+        # Calculate pagination info
+        total_pages = (total_count + per_page - 1) // per_page
+        has_prev = page > 1
+        has_next = page < total_pages
+        
+        return jsonify({
+            'availability': availability_list,
+            'pagination': {
+                'page': page,
+                'per_page': per_page,
+                'total_count': total_count,
+                'total_pages': total_pages,
+                'has_prev': has_prev,
+                'has_next': has_next
+            },
+            'filters': {
+                'start_date': start_date,
+                'end_date': end_date,
+                'user_id': user_id,
+                'status': status
+            }
+        })
+        
+    except Exception as e:
+        return jsonify({'error': f'Failed to retrieve availability data: {str(e)}'}), 500

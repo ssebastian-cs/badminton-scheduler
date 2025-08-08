@@ -263,23 +263,96 @@ def set_availability():
     if avail_date < date.today():
         return jsonify({'error': 'Cannot set availability for past dates'}), 400
     
+    # Parse time information for backward compatibility
+    time_start = None
+    time_end = None
+    is_all_day = data.get('is_all_day', True)  # Default to all-day for backward compatibility
+    
+    # Handle new time fields
+    if 'time_start' in data and data['time_start']:
+        try:
+            time_parts = data['time_start'].split(':')
+            time_start = time(int(time_parts[0]), int(time_parts[1]))
+            is_all_day = False
+        except (ValueError, IndexError):
+            return jsonify({'error': 'Invalid time_start format. Use HH:MM'}), 400
+    
+    if 'time_end' in data and data['time_end']:
+        try:
+            time_parts = data['time_end'].split(':')
+            time_end = time(int(time_parts[0]), int(time_parts[1]))
+            is_all_day = False
+        except (ValueError, IndexError):
+            return jsonify({'error': 'Invalid time_end format. Use HH:MM'}), 400
+    
+    # Handle is_all_day flag
+    if 'is_all_day' in data:
+        is_all_day = bool(data['is_all_day'])
+        if is_all_day:
+            time_start = None
+            time_end = None
+    
+    # Handle legacy time_slot field for backward compatibility
+    time_slot = data.get('time_slot')
+    if time_slot and not time_start and not time_end:
+        # Try to parse the time_slot into structured time fields
+        try:
+            # Simple parsing for common formats like "7:00 PM - 9:00 PM"
+            if ' - ' in time_slot:
+                start_str, end_str = time_slot.split(' - ')
+                # Simple time parsing for PM/AM format
+                if 'PM' in start_str or 'AM' in start_str:
+                    start_hour = int(start_str.split(':')[0])
+                    if 'PM' in start_str and start_hour != 12:
+                        start_hour += 12
+                    elif 'AM' in start_str and start_hour == 12:
+                        start_hour = 0
+                    time_start = time(start_hour, int(start_str.split(':')[1].split()[0]))
+                    
+                    end_hour = int(end_str.split(':')[0])
+                    if 'PM' in end_str and end_hour != 12:
+                        end_hour += 12
+                    elif 'AM' in end_str and end_hour == 12:
+                        end_hour = 0
+                    time_end = time(end_hour, int(end_str.split(':')[1].split()[0]))
+                    
+                    is_all_day = False
+                else:
+                    # Keep as-is if parsing fails
+                    is_all_day = False
+            else:
+                # Keep as-is for single time slots
+                is_all_day = False
+        except (ValueError, IndexError):
+            # If parsing fails, keep as-is for backward compatibility
+            is_all_day = False
+    
     # Find existing availability or create a new one
+    # Use new unique constraint based on time fields
     availability = Availability.query.filter_by(
         user_id=current_user.id,
         date=avail_date,
-        time_slot=data.get('time_slot')
+        time_start=time_start,
+        time_end=time_end
     ).first()
     
     if not availability:
         availability = Availability(
             user_id=current_user.id,
             date=avail_date,
-            time_slot=data.get('time_slot')
+            time_slot=time_slot,
+            time_start=time_start,
+            time_end=time_end,
+            is_all_day=is_all_day
         )
         db.session.add(availability)
     
     # Update fields
     availability.status = data['status']
+    availability.time_start = time_start
+    availability.time_end = time_end
+    availability.is_all_day = is_all_day
+    availability.time_slot = time_slot  # Keep for backward compatibility
     if 'play_preference' in data:
         availability.play_preference = data['play_preference']
     if 'notes' in data:
@@ -393,6 +466,32 @@ def update_availability(availability_id):
         db.session.rollback()
         return jsonify({'error': 'Failed to update availability'}), 500
 
+@app.route('/api/availability/<int:availability_id>', methods=['DELETE'])
+@login_required
+def delete_availability(availability_id):
+    """Delete an availability entry."""
+    # Find the availability entry
+    availability = Availability.query.get(availability_id)
+    if not availability:
+        return jsonify({'error': 'Availability entry not found'}), 404
+    
+    # Check user ownership (users can only delete their own entries, admins can delete any)
+    if not current_user.is_admin and availability.user_id != current_user.id:
+        return jsonify({'error': 'Unauthorized: You can only delete your own availability entries'}), 403
+    
+    # Check if the date is in the past (prevent deleting historical entries)
+    if availability.date < date.today():
+        return jsonify({'error': 'Cannot delete availability for past dates'}), 400
+    
+    try:
+        db.session.delete(availability)
+        db.session.commit()
+        return jsonify({'message': 'Availability entry deleted successfully'}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to delete availability'}), 500
+
 @app.route('/api/feedback', methods=['GET'])
 def get_feedback():
     """Get feedback entries."""
@@ -447,6 +546,145 @@ def get_users():
         'is_admin': user.is_admin,
         'created_at': user.created_at.isoformat()
     } for user in users])
+
+@app.route('/api/admin/users', methods=['POST'])
+@login_required
+@admin_required
+def create_user():
+    """Create a new user (admin only)."""
+    data = request.get_json()
+    
+    # Validate input
+    if not all(k in data for k in ['username', 'email', 'password']):
+        return jsonify({'error': 'Missing required fields: username, email, password'}), 400
+    
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({'error': 'Username already exists'}), 409
+        
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({'error': 'Email already registered'}), 409
+    
+    # Create new user
+    user = User(
+        username=data['username'],
+        email=data['email'],
+        is_admin=data.get('is_admin', False)
+    )
+    user.set_password(data['password'])
+    
+    db.session.add(user)
+    db.session.commit()
+    
+    return jsonify({
+        'message': 'User created successfully',
+        'user': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'is_admin': user.is_admin,
+            'created_at': user.created_at.isoformat()
+        }
+    }), 201
+
+@app.route('/api/admin/users/<int:user_id>', methods=['PUT'])
+@login_required
+@admin_required
+def update_user(user_id):
+    """Update a user (admin only)."""
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    # Update fields
+    if 'username' in data:
+        # Check if username is already taken by another user
+        existing_user = User.query.filter_by(username=data['username']).first()
+        if existing_user and existing_user.id != user_id:
+            return jsonify({'error': 'Username already exists'}), 409
+        user.username = data['username']
+    
+    if 'email' in data:
+        # Check if email is already taken by another user
+        existing_user = User.query.filter_by(email=data['email']).first()
+        if existing_user and existing_user.id != user_id:
+            return jsonify({'error': 'Email already registered'}), 409
+        user.email = data['email']
+    
+    if 'password' in data:
+        user.set_password(data['password'])
+    
+    if 'is_admin' in data:
+        user.is_admin = bool(data['is_admin'])
+    
+    try:
+        db.session.commit()
+        return jsonify({
+            'message': 'User updated successfully',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'is_admin': user.is_admin,
+                'created_at': user.created_at.isoformat()
+            }
+        }), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to update user'}), 500
+
+@app.route('/api/admin/users/<int:user_id>', methods=['DELETE'])
+@login_required
+@admin_required
+def delete_user(user_id):
+    """Delete a user (admin only)."""
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    
+    # Prevent admin from deleting themselves
+    if user.id == current_user.id:
+        return jsonify({'error': 'Cannot delete your own account'}), 400
+    
+    try:
+        # Delete user (cascade will handle related availability and feedback)
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({'message': 'User deleted successfully'}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to delete user'}), 500
+
+@app.route('/api/admin/availability/<int:availability_id>', methods=['PUT'])
+@login_required
+@admin_required
+def admin_update_availability(availability_id):
+    """Update any availability entry (admin only)."""
+    return update_availability(availability_id)  # Reuse the existing function
+
+@app.route('/api/admin/availability/<int:availability_id>', methods=['DELETE'])
+@login_required
+@admin_required
+def admin_delete_availability(availability_id):
+    """Delete any availability entry (admin only)."""
+    # Find the availability entry
+    availability = Availability.query.get(availability_id)
+    if not availability:
+        return jsonify({'error': 'Availability entry not found'}), 404
+    
+    try:
+        db.session.delete(availability)
+        db.session.commit()
+        return jsonify({'message': 'Availability entry deleted successfully'}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to delete availability'}), 500
 
 @app.route('/api/admin/availability/filtered', methods=['GET'])
 @login_required
