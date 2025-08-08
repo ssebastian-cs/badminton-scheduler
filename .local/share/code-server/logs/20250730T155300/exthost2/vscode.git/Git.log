@@ -1,0 +1,65 @@
+2025-07-30 12:15:50.059 [info] [main] Log level: Info
+2025-07-30 12:15:50.059 [info] [main] Validating found git in: "git"
+2025-07-30 12:15:50.059 [info] [main] Using git "2.34.1" from "git"
+2025-07-30 12:15:50.059 [info] [Model][doInitialScan] Initial repository scan started
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [2ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2025-07-30 12:15:50.059 [info] [Model][openRepository] Opened repository (path): /home/ubuntu/.nvm
+2025-07-30 12:15:50.059 [info] [Model][openRepository] Opened repository (real path): /home/ubuntu/.nvm
+2025-07-30 12:15:50.059 [info] > git config --get commit.template [2ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git for-each-ref --format %(refname)%00%(objectname)%00%(*objectname) refs/tags [3ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [6ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [2ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2025-07-30 12:15:50.059 [info] [Model][openRepository] Opened repository (path): /home/ubuntu/badminton_scheduler
+2025-07-30 12:15:50.059 [info] [Model][openRepository] Opened repository (real path): /home/ubuntu/badminton_scheduler
+2025-07-30 12:15:50.059 [info] > git status -z -uall [20ms]
+2025-07-30 12:15:50.059 [info] > git config --get commit.template [3ms]
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [31ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] [Git][getRemotes] No remotes found in the git config file
+2025-07-30 12:15:50.059 [info] > git config --get commit.template [8ms]
+2025-07-30 12:15:50.059 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [6ms]
+2025-07-30 12:15:50.059 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:15:50.059 [info] > git rev-parse --show-toplevel [12ms]
+2025-07-30 12:15:50.059 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.059 [info] [Model][doInitialScan] Initial repository scan completed - repositories (2), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2025-07-30 12:15:50.059 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [11ms]
+2025-07-30 12:15:50.059 [info] > git status -z -uall [15ms]
+2025-07-30 12:15:50.059 [info] > git for-each-ref --format %(refname)%00%(objectname)%00%(*objectname) refs/tags [8ms]
+2025-07-30 12:15:50.059 [info] > git status -z -uall [478ms]
+2025-07-30 12:15:50.059 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [431ms]
+2025-07-30 12:15:50.059 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:15:50.059 [error] [GitHistoryProvider][resolveHEADMergeBase] Failed to resolve merge base for master: Error: No such branch: master.
+2025-07-30 12:15:50.059 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [474ms]
+2025-07-30 12:15:50.059 [info] > git config --get commit.template [5ms]
+2025-07-30 12:15:50.059 [info] [Git][getRemotes] No remotes found in the git config file
+2025-07-30 12:15:50.059 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [3ms]
+2025-07-30 12:15:50.059 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:15:50.059 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2025-07-30 12:15:50.062 [info] > git status -z -uall [11ms]
+2025-07-30 12:15:50.595 [info] > git check-ignore -v -z --stdin [12ms]
+2025-07-30 12:15:50.595 [info] > git check-ignore -v -z --stdin [11ms]
+2025-07-30 12:15:50.596 [info] > git rev-parse --show-toplevel [17ms]
+2025-07-30 12:15:50.596 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:15:50.600 [info] > git rev-parse --show-toplevel [2ms]
+2025-07-30 12:15:50.610 [info] > git rev-parse --show-toplevel [3ms]
+2025-07-30 12:15:50.610 [info] fatal: not a git repository (or any of the parent directories): .git

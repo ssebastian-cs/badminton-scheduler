@@ -1,0 +1,18 @@
+2025-07-30 12:56:51.863 [info] Extension host with pid 16769 started
+2025-07-30 12:56:51.863 [error] Error: EEXIST: file already exists, open '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718/vscode.lock'
+2025-07-30 12:56:51.863 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718/vscode.lock': Could not acquire lock, checking if the file is stale.
+2025-07-30 12:56:51.863 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718/vscode.lock': The lock does not look stale, elapsed: 726 ms, giving up.
+2025-07-30 12:56:51.864 [error] Error: EEXIST: file already exists, open '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718-1/vscode.lock'
+2025-07-30 12:56:51.865 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718-1/vscode.lock': Could not acquire lock, checking if the file is stale.
+2025-07-30 12:56:51.865 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718-1/vscode.lock': The lock does not look stale, elapsed: 633 ms, giving up.
+2025-07-30 12:56:51.868 [info] Lock '/home/ubuntu/.local/share/code-server/User/workspaceStorage/-dcee718-2/vscode.lock': Lock acquired.
+2025-07-30 12:56:52.007 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-07-30 12:56:52.073 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-07-30 12:56:52.073 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-07-30 12:56:52.285 [info] Eager extensions activated
+2025-07-30 12:56:52.285 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-07-30 12:56:52.286 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-07-30 12:56:52.531 [warning] [Decorations] CAPPING events from decorations provider vscode.git 2399
+2025-07-30 12:56:52.952 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-07-30 12:56:53.038 [warning] [Decorations] CAPPING events from decorations provider vscode.git 2399
+2025-07-30 12:56:53.053 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'

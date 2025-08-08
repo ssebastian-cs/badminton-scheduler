@@ -1,0 +1,15 @@
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[16:15:33] No ptyHost heartbeat after 6 seconds
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+[16:56:44] Error: read ETIMEDOUT
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20) {
+  errno: -110,
+  code: 'ETIMEDOUT',
+  syscall: 'read'
+}
+[16:56:44] No ptyHost heartbeat after 6 seconds
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[16:57:00] [File Watcher ('parcel')] Inotify limit reached (ENOSPC) (path: /home/ubuntu)

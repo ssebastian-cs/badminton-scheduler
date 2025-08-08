@@ -1,0 +1,108 @@
+# Badminton Scheduler App Development Prompt
+
+## Project Overview
+Build a complete badminton scheduler web application in Python that manages availability, preferences, and feedback for a group of ~50 badminton players.
+
+## Core Requirements
+
+### User Management
+- Simple user registration and login system
+- User profiles with basic information (name, email, skill level)
+- Session management for logged-in users
+
+### Availability System
+- Monthly calendar view where users can select their available days/times
+- Users can mark availability as:
+  - Available
+  - Not available  
+  - Maybe/tentative
+- Bulk selection tools (select all weekends, select specific days of week, etc.)
+- Save and edit availability throughout the month
+
+### Play Preferences
+Users must be able to select their preferred play style:
+- **Drop-in**: Casual games, show up and play
+- **Book a court**: Scheduled games with court reservations
+- **Either**: Flexible, open to both options
+
+### Feedback & Comments System
+- General feedback form for the group/organizers
+- Comment system for specific dates or events
+- Simple rating system for sessions (optional)
+- View feedback history
+
+### Data Persistence
+- Use SQLite database for easy setup and portability
+- Design database schema for users, availability, preferences, and feedback
+- Include data backup/export functionality
+
+## Technical Specifications
+
+### Backend Framework
+Use Flask or FastAPI with:
+- SQLAlchemy ORM for database operations
+- User authentication (Flask-Login or similar)
+- Form handling and validation
+- RESTful API endpoints
+
+### Frontend
+- Responsive HTML/CSS/JavaScript interface
+- Calendar widget for availability selection
+- Clean, mobile-friendly design
+- Real-time updates where beneficial
+
+### Database Schema
+Design tables for:
+- Users (id, name, email, password_hash, skill_level, created_date)
+- Availability (user_id, date, time_slot, status, preference_type)
+- Feedback (user_id, date, message, rating, type)
+- Sessions/Events (optional: for organized games)
+
+### Key Features to Implement
+1. **Dashboard**: Overview of user's availability, upcoming games, recent feedback
+2. **Calendar Interface**: Interactive monthly calendar for setting availability
+3. **Group View**: See who's available on specific dates (for organizers)
+4. **Preference Management**: Easy switching between drop-in/booking preferences
+5. **Feedback Center**: Submit and view community feedback
+6. **Admin Panel**: Basic user management and data overview
+
+## File Structure
+```
+badminton_scheduler/
+├── app.py                 # Main Flask application
+├── models.py             # Database models
+├── forms.py              # WTForms for user input
+├── routes/
+│   ├── auth.py          # Authentication routes
+│   ├── availability.py  # Availability management
+│   ├── feedback.py      # Feedback system
+├── templates/           # HTML templates
+├── static/             # CSS, JS, images
+├── database.db         # SQLite database
+└── requirements.txt    # Python dependencies
+```
+
+## Additional Requirements
+- Include sample data for testing
+- Add input validation and error handling
+- Implement basic security measures (password hashing, CSRF protection)
+- Create a simple admin interface for managing users and viewing aggregate data
+- Add export functionality for availability data (CSV format)
+- Include basic email notifications (optional, using SMTP)
+
+## Deliverables
+1. Complete working Python application
+2. Database setup script with sample data
+3. Requirements.txt with all dependencies
+4. Basic documentation/README with setup instructions
+5. Simple deployment guide for local hosting
+
+## Success Criteria
+- 50 users can register, log in, and set monthly availability
+- Availability data persists and can be viewed by date/user
+- Preference system works for drop-in vs booking selection
+- Feedback system allows comments and ratings
+- Admin can view group availability and manage users
+- Application runs locally with minimal setup
+
+Please build this as a complete, production-ready application with clean code, proper error handling, and a user-friendly interface.

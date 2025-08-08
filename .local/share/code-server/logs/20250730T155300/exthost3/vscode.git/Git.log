@@ -1,0 +1,65 @@
+2025-07-30 12:56:52.463 [info] [main] Log level: Info
+2025-07-30 12:56:52.463 [info] [main] Validating found git in: "git"
+2025-07-30 12:56:52.463 [info] [main] Using git "2.34.1" from "git"
+2025-07-30 12:56:52.463 [info] [Model][doInitialScan] Initial repository scan started
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [2ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [2ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2025-07-30 12:56:52.463 [info] [Model][openRepository] Opened repository (path): /home/ubuntu/.nvm
+2025-07-30 12:56:52.463 [info] [Model][openRepository] Opened repository (real path): /home/ubuntu/.nvm
+2025-07-30 12:56:52.463 [info] > git config --get commit.template [3ms]
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git for-each-ref --format %(refname)%00%(objectname)%00%(*objectname) refs/tags [4ms]
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [13ms]
+2025-07-30 12:56:52.463 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.463 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [6ms]
+2025-07-30 12:56:52.463 [info] > git rev-parse --show-toplevel [3ms]
+2025-07-30 12:56:52.463 [info] > git status -z -uall [42ms]
+2025-07-30 12:56:52.463 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2025-07-30 12:56:52.463 [info] [Model][openRepository] Opened repository (path): /home/ubuntu/badminton_scheduler
+2025-07-30 12:56:52.463 [info] [Model][openRepository] Opened repository (real path): /home/ubuntu/badminton_scheduler
+2025-07-30 12:56:52.464 [info] > git config --get commit.template [2ms]
+2025-07-30 12:56:52.465 [info] > git rev-parse --show-toplevel [5ms]
+2025-07-30 12:56:52.465 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.465 [info] > git config --get commit.template [9ms]
+2025-07-30 12:56:52.473 [info] [Git][getRemotes] No remotes found in the git config file
+2025-07-30 12:56:52.476 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2025-07-30 12:56:52.476 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:56:52.482 [info] > git rev-parse --show-toplevel [13ms]
+2025-07-30 12:56:52.483 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:52.486 [info] [Model][doInitialScan] Initial repository scan completed - repositories (2), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2025-07-30 12:56:52.489 [info] > git status -z -uall [10ms]
+2025-07-30 12:56:52.489 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [7ms]
+2025-07-30 12:56:52.490 [info] > git for-each-ref --format %(refname)%00%(objectname)%00%(*objectname) refs/tags [15ms]
+2025-07-30 12:56:52.946 [info] > git status -z -uall [454ms]
+2025-07-30 12:56:52.946 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [401ms]
+2025-07-30 12:56:52.946 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:56:52.947 [error] [GitHistoryProvider][resolveHEADMergeBase] Failed to resolve merge base for master: Error: No such branch: master.
+2025-07-30 12:56:52.947 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [452ms]
+2025-07-30 12:56:52.973 [info] > git config --get commit.template [28ms]
+2025-07-30 12:56:52.985 [info] > git check-ignore -v -z --stdin [6ms]
+2025-07-30 12:56:52.986 [info] > git check-ignore -v -z --stdin [2ms]
+2025-07-30 12:56:52.991 [info] [Git][getRemotes] No remotes found in the git config file
+2025-07-30 12:56:52.993 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [2ms]
+2025-07-30 12:56:52.994 [warning] [Git][getBranch] No such branch: master
+2025-07-30 12:56:53.003 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2025-07-30 12:56:53.013 [info] > git status -z -uall [16ms]
+2025-07-30 12:56:53.104 [info] > git rev-parse --show-toplevel [1ms]
+2025-07-30 12:56:53.104 [info] fatal: not a git repository (or any of the parent directories): .git
+2025-07-30 12:56:53.481 [info] > git rev-parse --show-toplevel [13ms]
+2025-07-30 12:56:53.512 [info] > git check-ignore -v -z --stdin [3ms]
+2025-07-30 12:56:53.513 [info] > git check-ignore -v -z --stdin [2ms]

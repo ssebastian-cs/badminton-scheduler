@@ -1,0 +1,632 @@
+{"level":"info","ts":1753888468.5338116,"caller":"cmd/pull.go:12","msg":"Pulling state from remote storage"}
+{"level":"info","ts":1753888468.5342505,"caller":"cmd/pull.go:16","msg":"Pull is not allowed, waiting for config change"}
+{"level":"warn","ts":1753888468.5356736,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888469.03692,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888469.538079,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888470.0391,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888470.5401695,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888471.0414371,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888471.5426102,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"warn","ts":1753888472.0439744,"caller":"utils/utils.go:23","msg":"Failed to fetch CDP WebSocket URL, will retry","error":"Get \"http://localhost:9222/json/version\": dial tcp [::1]:9222: connect: connection refused"}
+{"level":"info","ts":1753888472.658846,"caller":"watcher/cdp_watcher.go:99","msg":"Watching targets"}
+{"level":"info","ts":1753888472.823265,"caller":"watcher/cdp_watcher.go:117","msg":"Initial target found","targetID":"C71B4E610AAD91D166EC4CBC2F717BD6"}
+{"level":"info","ts":1753888472.8237731,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"C71B4E610AAD91D166EC4CBC2F717BD6"}
+{"level":"info","ts":1753888474.8247967,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889095.013853,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889128.183705,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889130.4609065,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889197.5949607,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889198.3045042,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889198.634368,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:38 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889198.9026177,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889199.5647485,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:39 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889199.935283,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889200.3305464,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:40 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889200.7126439,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:40 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889201.1440275,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:41 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889201.6122243,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889202.206739,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889202.9729748,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:43 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889203.5476139,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:43 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889204.091697,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:44 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889204.6663344,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:44 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889205.2520397,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:45 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889205.8814154,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:46 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889206.5176363,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:46 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889207.1917324,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:47 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889207.862581,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:48 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889208.5339575,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:48 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889209.3065329,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:49 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889210.0607529,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:50 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889210.839413,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:51 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889211.6341808,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:52 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889212.4569628,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:52 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889213.1027524,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:53 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889213.8245006,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:54 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889214.5051486,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:54 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889215.2698672,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:55 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889215.955611,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889217.4701915,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:58 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889218.6078944,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:26:59 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889219.4212935,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:00 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889220.2183745,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889220.9435825,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:01 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889221.74622,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:02 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889222.549681,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:03 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889223.351649,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:03 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889224.1828346,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:04 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889225.0184479,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:05 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889225.8117785,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:06 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889226.6488464,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:07 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889227.5049284,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:08 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889228.4447327,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:09 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889229.3802714,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:10 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889230.4181044,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889231.5810816,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:12 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889232.6329603,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:13 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889233.731115,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:14 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889234.7015626,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:15 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889235.6738675,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:16 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889236.566138,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:17 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889237.539564,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:18 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889238.5776155,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:19 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889239.8651536,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889240.9818635,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:21 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889242.0498853,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:22 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889244.059788,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:24 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889245.2794063,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:25 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889246.4580917,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:26 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889247.6589925,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:28 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889248.8623703,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:29 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889250.0566416,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:30 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889251.884632,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:32 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889253.1458812,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:34 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889254.4004354,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:34 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889255.625877,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:36 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889256.8093815,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:37 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889258.1219945,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:38 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889259.5629756,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:40 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889260.9005406,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:41 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889262.2546597,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:43 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889263.54979,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:45 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889265.5666075,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+2025/07/30 11:27:46 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889267.89042,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"info","ts":1753889268.4151688,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"1541272C8394AF6108A37184BB34CCE7"}
+{"level":"error","ts":1753889268.4277577,"caller":"watcher/cdp_watcher.go:246","msg":"Error enabling DOM storage events for target","targetID":"1541272C8394AF6108A37184BB34CCE7","error":"No target with given id found (-32602)","stacktrace":"gitlab.monica.cn/vida/manus-sandbox/sandbox/state-sync/watcher.(*CDPWatcher).watchLocalStorageEvents\n\t/data/gitlab-runner/builds/LVZ2kX5vG/0/vida/manus-sandbox/state-sync/watcher/cdp_watcher.go:246"}
+{"level":"info","ts":1753889275.0655274,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889275.3318648,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:55 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889275.5326622,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889275.746545,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889275.9429562,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:56 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889276.1932075,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889276.457559,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889276.7275386,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889276.9949608,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889277.3429627,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:57 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889277.689304,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:57 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889278.0470452,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:58 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889278.4028094,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:58 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889278.7726436,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:59 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889279.1512132,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:27:59 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889279.5041687,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889279.8853562,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:00 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889280.2584715,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:00 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889280.695714,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:01 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889281.1572104,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889281.679113,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889282.2361228,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889282.7769642,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:03 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889283.2973857,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:03 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889283.827136,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:04 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889284.3764536,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:04 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889284.9179351,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:05 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889285.5645678,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:06 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889286.1768265,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:06 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889286.780163,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:07 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889287.3894482,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+2025/07/30 11:28:07 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889288.0154095,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"info","ts":1753889288.392075,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"826326EFC91D2A2F74136519A2DF40C4"}
+{"level":"error","ts":1753889288.4015596,"caller":"watcher/cdp_watcher.go:246","msg":"Error enabling DOM storage events for target","targetID":"826326EFC91D2A2F74136519A2DF40C4","error":"No target with given id found (-32602)","stacktrace":"gitlab.monica.cn/vida/manus-sandbox/sandbox/state-sync/watcher.(*CDPWatcher).watchLocalStorageEvents\n\t/data/gitlab-runner/builds/LVZ2kX5vG/0/vida/manus-sandbox/state-sync/watcher/cdp_watcher.go:246"}
+{"level":"info","ts":1753889338.8802495,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.0275996,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.1209671,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.2633674,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.3749177,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.5327444,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.651541,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.7738242,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889339.927539,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.08212,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.2382205,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.4194655,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.6055317,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.800292,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889340.9984214,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889341.2383115,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889341.4738503,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889341.726621,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889342.248522,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889342.8199763,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889343.1488843,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889343.415129,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889343.6800628,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889343.9530385,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889344.2174006,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889344.4799426,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889344.7624018,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889345.0617392,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889345.3626325,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889345.7442067,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889346.1268744,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889346.4636254,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889346.8013012,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889347.176789,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889347.5338454,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:07 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889347.8984668,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889348.138582,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889348.4992366,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:08 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889348.8825448,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889349.309848,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889349.7966383,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889350.2319376,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889350.5217738,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889350.7950952,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889351.255153,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889351.696276,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889351.9850833,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889352.4524271,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889352.9313772,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889353.3662343,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:13 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889353.8343427,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889354.1061504,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889354.353131,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889354.6232893,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889355.1583972,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889355.637499,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889356.1517973,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:16 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889356.6761863,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889357.0141213,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889357.642571,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889358.2155602,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889358.5519726,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889359.1681929,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889359.7419608,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889360.3568065,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889360.9715204,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:21 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889361.6740482,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889362.0465426,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889362.4518368,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:23 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889363.261584,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889363.3704133,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:23 ERROR: received DOM.documentUpdated when there's no top-level frame
+2025/07/30 11:29:24 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889364.1867905,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889364.9334946,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889365.6493597,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889366.1442163,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889366.9799445,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889367.8265445,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889368.5998294,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889369.0010974,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889369.4619114,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889370.2354152,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889371.0585957,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889371.9077086,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889372.8141344,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:33 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889373.6446123,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889374.0740175,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889374.886826,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889376.5549083,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889377.4939106,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889378.3570592,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889379.254158,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889380.17796,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889381.3255265,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889382.35593,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889383.3469746,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889384.2785656,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889385.1886804,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889386.1107001,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:46 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889387.0717978,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889387.9631906,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:48 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889388.9150076,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:49 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889389.9406962,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889390.9139173,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:51 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889392.06591,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889393.2095473,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:29:54 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889394.3612175,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889395.4014635,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889396.4086602,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889397.881102,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889398.8805566,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889399.9692874,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889400.5423005,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889401.6246402,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889402.774194,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889403.8522356,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889404.9209619,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:30:05 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889405.9774292,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889407.035633,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889407.5820131,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:30:08 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889408.7307234,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889409.842145,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889410.9454968,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:30:11 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889412.0992372,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889413.2069793,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889414.412527,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889415.6083367,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889416.800507,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889417.9357498,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889419.0789254,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889421.208905,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889422.4287176,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889423.6522954,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889424.862234,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:30:25 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889426.149676,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889427.3524578,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889428.659537,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889429.994616,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889431.2304919,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889432.5723853,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889434.0845156,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889436.0078564,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889437.306769,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889438.5884106,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889439.9738114,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889441.2595565,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889442.6966305,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889444.1112287,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889445.4611845,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889446.7433221,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889448.09041,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889449.617424,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889450.9759433,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889452.4119115,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889453.9559324,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:30:55 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889455.351812,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889457.0638096,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889458.6150465,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889460.0902946,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889461.6690607,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889463.137881,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889465.1792886,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889466.4876027,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:31:07 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889467.946888,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889469.3369925,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889470.8150253,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889472.2810864,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889473.755246,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889475.2466824,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889476.828912,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889478.5423417,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889480.0244663,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889481.6052132,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889483.1778316,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889484.8520427,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889486.9107466,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889488.4524972,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889489.9556565,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889491.3697944,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889492.832187,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889494.426476,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:31:35 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889496.1036882,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889497.7078755,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:31:38 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889499.3688939,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889501.0082765,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889502.8796637,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889504.4951134,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889506.1115196,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889507.794237,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889509.6163933,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889511.227303,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889512.9207196,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889514.6426284,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+2025/07/30 11:31:56 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889516.4623494,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889518.1992204,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889520.0001786,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889521.7475033,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889523.6606922,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889525.5439565,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"info","ts":1753889526.4763913,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD"}
+{"level":"error","ts":1753889526.4821017,"caller":"watcher/cdp_watcher.go:246","msg":"Error enabling DOM storage events for target","targetID":"3C72AE4F6125F75626DBF8ED193CE4FD","error":"No target with given id found (-32602)","stacktrace":"gitlab.monica.cn/vida/manus-sandbox/sandbox/state-sync/watcher.(*CDPWatcher).watchLocalStorageEvents\n\t/data/gitlab-runner/builds/LVZ2kX5vG/0/vida/manus-sandbox/state-sync/watcher/cdp_watcher.go:246"}
+{"level":"info","ts":1753889591.7943208,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889592.5083852,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889592.5259538,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889593.52488,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889593.685363,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889593.700647,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889593.9565005,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889594.079989,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889594.664013,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889594.821221,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889594.8226845,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889594.9573479,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889595.8002553,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889595.9586675,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889595.967955,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889595.9695582,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889596.786436,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889596.9614804,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889597.011285,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889597.013544,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889597.8690088,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889597.9627974,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889597.9720466,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889597.9734476,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889598.964714,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889599.0900595,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889599.2344615,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889599.2351725,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"info","ts":1753889599.4666913,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"48FA0107349B3EA3C5BFB92CDDD09929"}
+{"level":"error","ts":1753889599.4685552,"caller":"states/localstorage.go:74","msg":"Failed to set localStorage item","key":"AMP_unsent_46ac3f9abb","error":"No target with given id found (-32602)","stacktrace":"gitlab.monica.cn/vida/manus-sandbox/sandbox/state-sync/states.(*LocalStorage).SetupWatcher.func1\n\t/data/gitlab-runner/builds/LVZ2kX5vG/0/vida/manus-sandbox/state-sync/states/localstorage.go:74"}
+{"level":"error","ts":1753889599.468731,"caller":"watcher/cdp_watcher.go:246","msg":"Error enabling DOM storage events for target","targetID":"48FA0107349B3EA3C5BFB92CDDD09929","error":"No target with given id found (-32602)","stacktrace":"gitlab.monica.cn/vida/manus-sandbox/sandbox/state-sync/watcher.(*CDPWatcher).watchLocalStorageEvents\n\t/data/gitlab-runner/builds/LVZ2kX5vG/0/vida/manus-sandbox/state-sync/watcher/cdp_watcher.go:246"}
+{"level":"info","ts":1753889599.4850094,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889604.4686477,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889604.66558,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889604.6794567,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889605.1437197,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889605.2600162,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889605.2737436,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889605.9741256,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889606.1336744,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889606.2856007,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889606.2876139,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889606.975242,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889607.3450634,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889607.5512502,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889607.5529847,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889607.976318,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889608.5144246,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889608.7058568,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889608.7074792,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889608.9788184,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889609.3285093,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889609.4677157,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889609.4694927,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889609.9806082,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889610.1115277,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889610.3276474,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889610.3293662,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889610.9168777,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889610.9818103,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889611.0346386,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889611.03706,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889611.9828143,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889612.3307443,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889612.6339128,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889612.6351435,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889612.6650057,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889613.4934654,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889613.6220434,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889613.6239078,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889613.9863605,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889614.9878159,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889615.0828984,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889615.2258909,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889615.2279673,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889615.2825272,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889615.9892204,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889616.2304595,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889616.602799,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889616.6045282,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889616.8732898,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889617.2247584,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889617.354778,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889617.356412,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889617.995001,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889618.5683835,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889618.9617364,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889618.963402,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889619.1096778,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889619.611736,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889619.7413645,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889619.7432292,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889619.9977932,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889620.9909918,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889621.001277,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889621.4375782,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889621.4396055,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889621.586536,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889622.0024393,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889622.4733853,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889622.9557657,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889622.9591932,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889623.032514,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889623.7868896,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889624.0051105,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889624.267411,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889624.2692251,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889624.6324704,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889625.0067117,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889625.0334268,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889625.5361366,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889625.5376647,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889625.885386,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889626.0075066,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889626.3435245,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889626.892612,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889626.8947897,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889627.009273,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889627.1956856,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889628.0103807,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889628.1353567,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889628.631298,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889628.670588,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889628.672901,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889629.5009313,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889630.0135515,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889630.0705588,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889630.073471,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889630.3853338,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889630.958466,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889631.0173268,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889631.5603487,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889631.562286,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889632.129567,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889632.4740937,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889633.0205483,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889633.1800656,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889633.1831415,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889633.4097435,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889634.0216367,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889634.375565,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889635.0191386,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889635.0298018,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889635.032004,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+2025/07/30 11:33:55 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889636.024083,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889636.261755,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889636.9051523,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889636.9616551,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889636.9646664,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889637.9331212,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889638.0265496,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889638.6479905,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889638.650564,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889638.8634555,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889639.5997248,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889640.0289626,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889640.3384168,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889640.3405948,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889640.4485247,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889641.0310762,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889641.3938735,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889642.032455,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889642.1675487,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889642.1705732,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889642.5224571,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+2025/07/30 11:34:02 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889643.0351787,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889643.4600277,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889644.1577342,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889644.2451742,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889644.2475195,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889645.0399714,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889645.267727,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889646.0411465,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889646.0692146,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889646.072049,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889647.0430226,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889647.1501462,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889647.948992,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889647.9512663,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889648.6620142,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+2025/07/30 11:34:08 ERROR: received DOM.documentUpdated when there's no top-level frame
+{"level":"info","ts":1753889649.045879,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889649.1857438,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889650.0490088,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889650.0516672,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889650.172505,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889651.0522528,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889651.1223311,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889651.9832153,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889651.9863431,"caller":"watcher/cdp_watcher.go:143","msg":"Target info changed","targetID":"2581720966280EDAFA089487E1CCA124"}
+{"level":"info","ts":1753889652.256349,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889653.05589,"caller":"cmd/run.go:71","msg":"Put is not allowed"}
+{"level":"info","ts":1753889655.348477,"caller":"cmd/run.go:71","msg":"Put is not allowed"}

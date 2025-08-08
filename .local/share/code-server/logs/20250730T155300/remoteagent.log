@@ -1,0 +1,26 @@
+2025-07-30 15:53:01.073 [info] 
+
+
+
+
+2025-07-30 15:53:01.093 [info] Extension host agent started.
+2025-07-30 15:53:01.193 [info] Started initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.local/share/code-server/extensions
+2025-07-30 15:53:01.217 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.local/share/code-server/extensions
+2025-07-30 15:53:03.889 [info] [10.177.195.1][7e317bdb][ManagementConnection] New connection established.
+2025-07-30 15:53:05.474 [info] [10.177.195.1][c39a6e23][ExtensionHostConnection] New connection established.
+2025-07-30 15:53:05.862 [info] [10.177.195.1][c39a6e23][ExtensionHostConnection] <7056> Launched Extension Host Process.
+2025-07-30 16:15:33.899 [warning] No ptyHost heartbeat after 6 seconds
+2025-07-30 16:15:45.651 [info] [10.182.216.1][26c02b46][ManagementConnection] New connection established.
+2025-07-30 16:15:47.549 [info] [10.182.216.1][aef790be][ExtensionHostConnection] New connection established.
+2025-07-30 16:15:47.568 [info] [10.182.216.1][aef790be][ExtensionHostConnection] <11196> Launched Extension Host Process.
+2025-07-30 16:26:01.274 [info] [10.182.216.1][26c02b46][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+2025-07-30 16:56:44.124 [error] Error: read ETIMEDOUT
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2025-07-30 16:56:44.134 [info] [10.177.195.1][7e317bdb][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+2025-07-30 16:56:44.134 [warning] No ptyHost heartbeat after 6 seconds
+2025-07-30 16:56:49.709 [info] [10.177.195.1][7e317bdb][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+2025-07-30 16:56:49.710 [info] [10.182.216.1][26c02b46][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+2025-07-30 16:56:49.710 [info] [10.187.195.1][3bc7093d][ManagementConnection] New connection established.
+2025-07-30 16:56:51.053 [info] [10.187.195.1][44bc76aa][ExtensionHostConnection] New connection established.
+2025-07-30 16:56:51.075 [info] [10.187.195.1][44bc76aa][ExtensionHostConnection] <16769> Launched Extension Host Process.
+2025-07-30 16:57:00.858 [error] [File Watcher ('parcel')] Inotify limit reached (ENOSPC) (path: /home/ubuntu)
