@@ -1,0 +1,12 @@
+nohup: ignoring input
+
+> frontend@0.0.0 dev /home/ubuntu/badminton_scheduler/frontend
+> vite --host
+
+
+  VITE v6.3.5  ready in 633 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://169.254.0.21:5173/
+Killed
+ ELIFECYCLE  Command failed with exit code 137.

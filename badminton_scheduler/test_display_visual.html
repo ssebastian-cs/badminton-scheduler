@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7 Display Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        
+        /* Copy the enhanced availability display styles */
+        .date-group {
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .date-header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .availability-item {
+            background-color: #fafafa;
+            padding: 12px 15px;
+            margin: 0;
+            border-radius: 0;
+            border-left: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .availability-item:last-child { border-bottom: none; }
+        .availability-item:hover { background-color: #f5f5f5; }
+        
+        .availability-main {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .time-status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .time-badge.all-day {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .time-badge.time-range {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-badge.status-available {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+        
+        .status-badge.status-tentative {
+            background-color: #fff8e1;
+            color: #f57c00;
+            border: 1px solid #ffb74d;
+        }
+        
+        .preference-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: #f0f0f0;
+            color: #666;
+            border-radius: 8px;
+            font-size: 11px;
+            text-transform: capitalize;
+        }
+        
+        .notes-row {
+            margin-top: 6px;
+            padding: 6px 10px;
+            background-color: #f9f9f9;
+            border-left: 3px solid #ddd;
+            border-radius: 0 4px 4px 0;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task 7: Enhanced Availability Display</h1>
+        <p>This demonstrates the improved availability display with time information, grouping, and better formatting.</p>
+        
+        <div id="availabilityList">
+            <!-- Sample data to demonstrate the display -->
+            <div class="date-group">
+                <div class="date-header">Mon, Aug 7, 2025</div>
+                
+                <div class="availability-item">
+                    <div class="availability-main">
+                        <div class="time-status-row">
+                            <span class="time-badge all-day">All Day</span>
+                            <span class="status-badge status-available">Available</span>
+                        </div>
+                        <div class="preference-row">
+                            <span class="preference-badge">drop in</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="availability-item">
+                    <div class="availability-main">
+                        <div class="time-status-row">
+                            <span class="time-badge time-range">7:00 PM - 9:00 PM</span>
+                            <span class="status-badge status-tentative">Tentative</span>
+                        </div>
+                        <div class="notes-row">
+                            <em>Prefer competitive games</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="date-group">
+                <div class="date-header">Tue, Aug 8, 2025</div>
+                
+                <div class="availability-item">
+                    <div class="availability-main">
+                        <div class="time-status-row">
+                            <span class="time-badge time-range">6:30 PM - 8:30 PM</span>
+                            <span class="status-badge status-available">Available</span>
+                        </div>
+                        <div class="preference-row">
+                            <span class="preference-badge">book court</span>
+                        </div>
+                        <div class="notes-row">
+                            <em>Looking for doubles partners</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
