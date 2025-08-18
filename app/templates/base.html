@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Badminton Scheduler{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-green': '#00FF41',
+                        'dark-gray': '#1A1A1A',
+                        'darker-gray': '#0D0D0D',
+                        'light-gray': '#2A2A2A',
+                        'gray-750': '#374151'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 255, 65, 0.3)',
+                        'neon-lg': '0 0 20px rgba(0, 255, 65, 0.4)',
+                        'neon-xl': '0 0 30px rgba(0, 255, 65, 0.5)'
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    },
+                    minHeight: {
+                        '44': '11rem'
+                    },
+                    fontSize: {
+                        'xs': ['0.75rem', { lineHeight: '1rem' }],
+                        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+                        'base': ['1rem', { lineHeight: '1.5rem' }],
+                        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+                        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+                        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+                        '3xl': ['1.875rem', { lineHeight: '2.25rem' }]
+                    }
+                }
+            },
+            screens: {
+                'xs': '475px',
+                'sm': '640px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1536px'
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00FF41;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00CC33;
+        }
+        
+        /* Smooth transitions */
+        * {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        /* Focus styles */
+        input:focus, textarea:focus, select:focus {
+            box-shadow: 0 0 0 2px rgba(0, 255, 65, 0.5);
+        }
+    </style>
+</head>
+<body class="h-full bg-black text-white font-sans">
+    <div class="min-h-full">
+        <!-- Navigation -->
+        {% if current_user.is_authenticated %}
+        <nav class="bg-dark-gray border-b border-neon-green shadow-neon">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="{{ url_for('availability.dashboard') }}" class="text-neon-green text-xl font-bold hover:shadow-neon">
+                            <span class="hidden sm:inline">Badminton Scheduler</span>
+                            <span class="sm:hidden">🏸 Scheduler</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="{{ url_for('availability.dashboard') }}" class="text-white hover:text-neon-green px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Dashboard
+                        </a>
+                        <a href="{{ url_for('comments.comments') }}" class="text-white hover:text-neon-green px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Comments
+                        </a>
+                        {% if current_user.is_admin() %}
+                        <a href="{{ url_for('admin.dashboard') }}" class="text-neon-green hover:text-white px-3 py-2 rounded-md text-sm font-medium border border-neon-green hover:bg-neon-green transition-all">
+                            Admin
+                        </a>
+                        {% endif %}
+                        <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-600">
+                            <span class="text-gray-300 text-sm">{{ current_user.username }}</span>
+                            {% if current_user.is_admin() %}
+                            <span class="bg-neon-green text-black px-2 py-1 rounded text-xs font-bold shadow-neon">ADMIN</span>
+                            {% endif %}
+                            <a href="{{ url_for('auth.logout') }}" class="text-white hover:text-neon-green px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button type="button" class="mobile-menu-button touch-target text-gray-300 hover:text-neon-green focus:outline-none focus:text-neon-green focus:ring-2 focus:ring-neon-green focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-all" aria-label="Toggle menu">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden md:hidden bg-darker-gray border-t border-gray-700 shadow-lg">
+                <div class="px-3 pt-3 pb-4 space-y-2">
+                    <a href="{{ url_for('availability.dashboard') }}" class="mobile-nav-item text-white hover:text-neon-green hover:bg-dark-gray active:bg-gray-700 block px-4 py-3 rounded-lg text-base font-medium transition-all touch-target flex items-center">
+                        <span class="mr-3">📊</span>Dashboard
+                    </a>
+                    <a href="{{ url_for('comments.comments') }}" class="mobile-nav-item text-white hover:text-neon-green hover:bg-dark-gray active:bg-gray-700 block px-4 py-3 rounded-lg text-base font-medium transition-all touch-target flex items-center">
+                        <span class="mr-3">💬</span>Comments
+                    </a>
+                    {% if current_user.is_admin() %}
+                    <a href="{{ url_for('admin.dashboard') }}" class="mobile-nav-item text-neon-green hover:text-white hover:bg-neon-green active:bg-green-400 block px-4 py-3 rounded-lg text-base font-medium border border-neon-green transition-all touch-target flex items-center mx-1">
+                        <span class="mr-3">👨‍💼</span>Admin Dashboard
+                    </a>
+                    {% endif %}
+                    <div class="border-t border-gray-700 pt-4 mt-4">
+                        <div class="flex items-center px-4 py-2 mb-3 bg-dark-gray rounded-lg">
+                            <div class="w-8 h-8 bg-neon-green rounded-full flex items-center justify-center mr-3">
+                                <span class="text-black font-bold text-sm">{{ current_user.username[0].upper() }}</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-300 text-sm font-medium">{{ current_user.username }}</span>
+                                {% if current_user.is_admin() %}
+                                <span class="ml-2 bg-neon-green text-black px-2 py-1 rounded text-xs font-bold">ADMIN</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <a href="{{ url_for('auth.logout') }}" class="mobile-nav-item text-white hover:text-red-400 hover:bg-red-900 active:bg-red-800 block px-4 py-3 rounded-lg text-base font-medium transition-all touch-target flex items-center">
+                            <span class="mr-3">🚪</span>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% endif %}
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+                    {% for category, message in messages %}
+                        <div class="mb-4 p-4 rounded-md {% if category == 'error' %}bg-red-900 border border-red-700 text-red-100{% elif category == 'success' %}bg-green-900 border border-neon-green text-green-100{% elif category == 'info' %}bg-blue-900 border border-blue-700 text-blue-100{% else %}bg-gray-800 border border-gray-600 text-gray-100{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Mobile JavaScript -->
+    <script src="{{ url_for('static', filename='js/mobile.js') }}"></script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

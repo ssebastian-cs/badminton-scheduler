@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Error Dashboard - Admin{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-black text-white">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-green-400 mb-2">Error Monitoring Dashboard</h1>
+                <p class="text-gray-300">Monitor application errors and system health</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="{{ url_for('admin.export_errors', hours=hours) }}" 
+                   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    Export Data
+                </a>
+                <a href="{{ url_for('admin.dashboard') }}" 
+                   class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    Back to Admin
+                </a>
+            </div>
+        </div>
+
+        <!-- Time Period Selector -->
+        <div class="mb-6">
+            <div class="flex space-x-2">
+                <a href="{{ url_for('admin.error_dashboard', hours=1) }}" 
+                   class="px-4 py-2 rounded-lg {% if hours == 1 %}bg-green-600{% else %}bg-gray-700 hover:bg-gray-600{% endif %} transition-colors">
+                    Last Hour
+                </a>
+                <a href="{{ url_for('admin.error_dashboard', hours=24) }}" 
+                   class="px-4 py-2 rounded-lg {% if hours == 24 %}bg-green-600{% else %}bg-gray-700 hover:bg-gray-600{% endif %} transition-colors">
+                    Last 24 Hours
+                </a>
+                <a href="{{ url_for('admin.error_dashboard', hours=168) }}" 
+                   class="px-4 py-2 rounded-lg {% if hours == 168 %}bg-green-600{% else %}bg-gray-700 hover:bg-gray-600{% endif %} transition-colors">
+                    Last Week
+                </a>
+            </div>
+        </div>
+
+        <!-- Error Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-300 mb-2">Total Errors</h3>
+                <p class="text-3xl font-bold text-red-400">{{ error_summary.total_errors }}</p>
+                <p class="text-sm text-gray-400 mt-1">Last {{ hours }} hours</p>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-300 mb-2">Critical Errors</h3>
+                <p class="text-3xl font-bold text-red-600">{{ error_summary.severity_breakdown.get('CRITICAL', 0) }}</p>
+                <p class="text-sm text-gray-400 mt-1">Requires immediate attention</p>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-300 mb-2">Database Errors</h3>
+                <p class="text-3xl font-bold text-orange-400">
+                    {{ error_summary.error_types.get('DATABASE_ERROR', 0) + error_summary.error_types.get('SQLAlchemyError', 0) }}
+                </p>
+                <p class="text-sm text-gray-400 mt-1">Database-related issues</p>
+            </div>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-300 mb-2">Security Events</h3>
+                <p class="text-3xl font-bold text-yellow-400">
+                    {{ error_summary.error_types.get('FORBIDDEN_ACCESS', 0) + error_summary.error_types.get('RATE_LIMIT_EXCEEDED', 0) }}
+                </p>
+                <p class="text-sm text-gray-400 mt-1">Security-related events</p>
+            </div>
+        </div>
+
+        <!-- Error Types Breakdown -->
+        {% if error_summary.error_types %}
+        <div class="bg-gray-800 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-semibold text-green-400 mb-4">Error Types</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {% for error_type, count in error_summary.error_types.items() %}
+                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg">
+                    <span class="text-gray-300">{{ error_type.replace('_', ' ').title() }}</span>
+                    <span class="text-white font-semibold">{{ count }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Severity Breakdown -->
+        {% if error_summary.severity_breakdown %}
+        <div class="bg-gray-800 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-semibold text-green-400 mb-4">Severity Breakdown</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {% for severity, count in error_summary.severity_breakdown.items() %}
+                <div class="text-center p-4 bg-gray-700 rounded-lg">
+                    <p class="text-2xl font-bold 
+                        {% if severity == 'CRITICAL' %}text-red-600
+                        {% elif severity == 'ERROR' %}text-red-400
+                        {% elif severity == 'WARNING' %}text-yellow-400
+                        {% else %}text-blue-400{% endif %}">
+                        {{ count }}
+                    </p>
+                    <p class="text-gray-300 mt-1">{{ severity }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Top Affected Endpoints -->
+        {% if error_summary.top_endpoints %}
+        <div class="bg-gray-800 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-semibold text-green-400 mb-4">Most Affected Endpoints</h3>
+            <div class="space-y-2">
+                {% for endpoint, count in error_summary.top_endpoints.items() %}
+                <div class="flex justify-between items-center p-3 bg-gray-700 rounded-lg">
+                    <span class="text-gray-300 font-mono">{{ endpoint or 'Unknown' }}</span>
+                    <span class="text-white font-semibold">{{ count }} errors</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Recent Errors -->
+        {% if error_report.recent_errors %}
+        <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-semibold text-green-400 mb-4">Recent Errors</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-600">
+                            <th class="text-left py-2 text-gray-300">Time</th>
+                            <th class="text-left py-2 text-gray-300">Type</th>
+                            <th class="text-left py-2 text-gray-300">Severity</th>
+                            <th class="text-left py-2 text-gray-300">Message</th>
+                            <th class="text-left py-2 text-gray-300">Endpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for error in error_report.recent_errors %}
+                        <tr class="border-b border-gray-700 hover:bg-gray-700">
+                            <td class="py-2 text-gray-400">
+                                {{ error.timestamp[:19].replace('T', ' ') }}
+                            </td>
+                            <td class="py-2 text-gray-300">
+                                {{ error.error_type.replace('_', ' ').title() }}
+                            </td>
+                            <td class="py-2">
+                                <span class="px-2 py-1 rounded text-xs font-semibold
+                                    {% if error.severity == 'CRITICAL' %}bg-red-600 text-white
+                                    {% elif error.severity == 'ERROR' %}bg-red-500 text-white
+                                    {% elif error.severity == 'WARNING' %}bg-yellow-500 text-black
+                                    {% else %}bg-blue-500 text-white{% endif %}">
+                                    {{ error.severity }}
+                                </span>
+                            </td>
+                            <td class="py-2 text-gray-300 max-w-xs truncate">
+                                {{ error.message[:100] }}{% if error.message|length > 100 %}...{% endif %}
+                            </td>
+                            <td class="py-2 text-gray-400 font-mono text-xs">
+                                {{ error.endpoint or 'N/A' }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="bg-gray-800 rounded-lg p-6 text-center">
+            <p class="text-gray-400 text-lg">No errors recorded in the last {{ hours }} hours</p>
+            <p class="text-green-400 mt-2">🎉 System is running smoothly!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// Auto-refresh error data every 30 seconds
+setInterval(function() {
+    fetch('{{ url_for("admin.error_api", hours=hours) }}')
+        .then(response => response.json())
+        .then(data => {
+            // Update total errors count
+            const totalErrorsElement = document.querySelector('.text-red-400');
+            if (totalErrorsElement) {
+                totalErrorsElement.textContent = data.total_errors;
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}, 30000);
+</script>
+{% endblock %}

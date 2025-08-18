@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}My Availability - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-neon-green mb-2">My Availability</h1>
+        <p class="text-gray-400">Manage your upcoming badminton availability</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mb-6 flex flex-wrap gap-4">
+        <a href="{{ url_for('availability.add_availability') }}" 
+           class="bg-neon-green text-black px-4 py-2 rounded-md font-medium hover:bg-green-400 transition-colors">
+            Add New Availability
+        </a>
+        <a href="{{ url_for('availability.dashboard') }}" 
+           class="bg-gray-700 text-white px-4 py-2 rounded-md font-medium hover:bg-gray-600 transition-colors">
+            Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Availability Entries -->
+    {% if entries %}
+        <div class="space-y-4">
+            {% for entry in entries %}
+                <div class="bg-dark-gray rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-semibold text-neon-green mb-2">
+                                {{ entry.date.strftime('%A, %B %d, %Y') }}
+                            </h3>
+                            <div class="text-gray-300">
+                                <p class="mb-1">
+                                    <span class="font-medium">Time:</span> 
+                                    {{ entry.start_time.strftime('%I:%M %p') }} - {{ entry.end_time.strftime('%I:%M %p') }}
+                                </p>
+                                <p class="text-sm text-gray-400">
+                                    Created: {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                                    {% if entry.updated_at != entry.created_at %}
+                                        • Updated: {{ entry.updated_at.strftime('%B %d, %Y at %I:%M %p') }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="{{ url_for('availability.edit_availability', id=entry.id) }}" 
+                               class="bg-gray-700 text-white px-3 py-1 rounded text-sm hover:bg-gray-600 transition-colors">
+                                Edit
+                            </a>
+                            <form method="POST" action="{{ url_for('availability.delete_availability', id=entry.id) }}" 
+                                  class="inline" onsubmit="return confirm('Are you sure you want to delete this availability?')">
+                                <button type="submit" 
+                                        class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="bg-dark-gray rounded-lg shadow-lg p-8 text-center">
+            <div class="text-gray-400 mb-4">
+                <svg class="mx-auto h-12 w-12 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">No upcoming availability</h3>
+            <p class="text-gray-400 mb-4">
+                You haven't scheduled any availability yet. Add your first availability to let others know when you're free to play.
+            </p>
+            <a href="{{ url_for('availability.add_availability') }}" 
+               class="inline-block bg-neon-green text-black px-4 py-2 rounded-md font-medium hover:bg-green-400 transition-colors">
+                Add Your First Availability
+            </a>
+        </div>
+    {% endif %}
+
+    <!-- Help Section -->
+    <div class="mt-8 bg-gray-800 rounded-lg p-4">
+        <h3 class="text-lg font-medium text-white mb-2">Managing Your Availability</h3>
+        <ul class="text-gray-300 text-sm space-y-1">
+            <li>• Only future availability entries are shown here</li>
+            <li>• You can edit or delete any of your entries</li>
+            <li>• Other players can see your availability on the main dashboard</li>
+            <li>• Past availability entries are automatically hidden</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

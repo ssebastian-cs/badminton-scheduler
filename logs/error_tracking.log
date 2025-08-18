@@ -1,0 +1,5 @@
+2025-08-18 10:26:14,117 - ERROR - Error tracked: TEST_ERROR - Test error
+2025-08-18 10:31:05,255 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-18 10:43:08,219 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)
+2025-08-18 10:43:08,222 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)
+2025-08-18 10:43:08,224 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)

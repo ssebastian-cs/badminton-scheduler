@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header Section -->
+        <div class="text-center">
+            <div class="mb-6">
+                <div class="w-20 h-20 mx-auto bg-neon-green rounded-full flex items-center justify-center shadow-neon-lg">
+                    <span class="text-3xl">🏸</span>
+                </div>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-neon-green shadow-neon">
+                Sign in to your account
+            </h2>
+            <p class="mt-2 text-sm text-gray-400">
+                Badminton Availability Scheduler
+            </p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-dark-gray rounded-lg shadow-lg p-8 border border-gray-700">
+            <form class="space-y-6" method="POST">
+                {{ form.hidden_tag() }}
+                
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="text-neon-green mr-2">👤</span>
+                            {{ form.username.label(class="text-sm font-medium text-gray-300") }}
+                        </div>
+                        {{ form.username(class="mobile-form-input touch-target w-full px-4 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green transition-colors text-lg", placeholder="Enter your username") }}
+                        {% if form.username.errors %}
+                            <div class="mt-2">
+                                {% for error in form.username.errors %}
+                                    <p class="text-red-400 text-sm flex items-center">
+                                        <span class="mr-1">⚠️</span>{{ error }}
+                                    </p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="text-neon-green mr-2">🔒</span>
+                            {{ form.password.label(class="text-sm font-medium text-gray-300") }}
+                        </div>
+                        {{ form.password(class="mobile-form-input touch-target w-full px-4 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green transition-colors text-lg", placeholder="Enter your password") }}
+                        {% if form.password.errors %}
+                            <div class="mt-2">
+                                {% for error in form.password.errors %}
+                                    <p class="text-red-400 text-sm flex items-center">
+                                        <span class="mr-1">⚠️</span>{{ error }}
+                                    </p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    {{ form.submit(class="touch-target w-full flex justify-center items-center py-4 px-4 border border-transparent text-lg font-medium rounded-lg text-black bg-neon-green hover:bg-green-400 hover:shadow-neon-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neon-green cursor-pointer transition-all shadow-neon active:bg-green-500") }}
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center">
+            <p class="text-xs text-gray-500">
+                🏸 Secure login for badminton scheduling
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

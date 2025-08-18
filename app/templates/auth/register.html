@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Create User - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="bg-dark-gray rounded-lg shadow-lg p-6">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-neon-green mb-2">Create New User</h1>
+            <p class="text-gray-400">Add a new user to the badminton scheduler system.</p>
+        </div>
+
+        <form method="POST" class="space-y-6">
+            {{ form.hidden_tag() }}
+            
+            <div>
+                {{ form.username.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                {{ form.username(class="w-full px-3 py-2 border border-gray-600 rounded-md bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green") }}
+                {% if form.username.errors %}
+                    <div class="text-red-400 text-sm mt-1">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <p class="text-gray-500 text-xs mt-1">3-20 characters, letters, numbers, and underscores only</p>
+            </div>
+
+            <div>
+                {{ form.password.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                {{ form.password(class="w-full px-3 py-2 border border-gray-600 rounded-md bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green") }}
+                {% if form.password.errors %}
+                    <div class="text-red-400 text-sm mt-1">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <p class="text-gray-500 text-xs mt-1">Minimum 6 characters</p>
+            </div>
+
+            <div>
+                {{ form.role.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                {{ form.role(class="w-full px-3 py-2 border border-gray-600 rounded-md bg-black text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-neon-green") }}
+                {% if form.role.errors %}
+                    <div class="text-red-400 text-sm mt-1">
+                        {% for error in form.role.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="flex justify-between items-center pt-4">
+                <a href="{{ url_for('admin.users') }}" class="px-4 py-2 border border-gray-600 rounded-md text-gray-300 hover:text-white hover:border-gray-500 transition-colors">
+                    Cancel
+                </a>
+                {{ form.submit(class="px-6 py-2 bg-neon-green text-black font-medium rounded-md hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neon-green cursor-pointer") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

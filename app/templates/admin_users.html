@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}User Management - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <div class="mb-8 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-neon-green mb-2">User Management</h1>
+            <p class="text-gray-400">Manage user accounts and permissions</p>
+        </div>
+        <a href="{{ url_for('admin.create_user') }}" class="px-4 py-2 bg-neon-green text-black font-medium rounded-md hover:bg-green-400 transition-colors">
+            Create New User
+        </a>
+    </div>
+
+    <div class="bg-dark-gray rounded-lg shadow-lg overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-700">
+            <h2 class="text-xl font-semibold text-white">Users ({{ users.total }} total)</h2>
+        </div>
+        
+        {% if users.items %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-700">
+                <thead class="bg-gray-800">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">User</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Role</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Created</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for user in users.items %}
+                    <tr class="hover:bg-gray-800">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div>
+                                    <div class="text-sm font-medium text-white">{{ user.username }}</div>
+                                    <div class="text-sm text-gray-400">ID: {{ user.id }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {% if user.role == 'Admin' %}bg-yellow-900 text-yellow-200{% else %}bg-blue-900 text-blue-200{% endif %}">
+                                {{ user.role }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {% if user.is_active %}bg-green-900 text-green-200{% else %}bg-red-900 text-red-200{% endif %}">
+                                {% if user.is_active %}Active{% else %}Blocked{% endif %}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                            {{ user.created_at.strftime('%Y-%m-%d') }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <div class="flex space-x-2">
+                                <a href="{{ url_for('admin.user_detail', user_id=user.id) }}" class="text-neon-green hover:text-green-400">
+                                    View
+                                </a>
+                                {% if user.id != current_user.id %}
+                                <form method="POST" action="{{ url_for('admin.toggle_user_status', user_id=user.id) }}" class="inline">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button type="submit" class="{% if user.is_active %}text-red-400 hover:text-red-300{% else %}text-green-400 hover:text-green-300{% endif %}" 
+                                            onclick="return confirm('Are you sure you want to {% if user.is_active %}block{% else %}unblock{% endif %} {{ user.username }}?')">
+                                        {% if user.is_active %}Block{% else %}Unblock{% endif %}
+                                    </button>
+                                </form>
+                                <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}" class="inline">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button type="submit" class="text-red-400 hover:text-red-300" 
+                                            onclick="return confirm('Are you sure you want to delete {{ user.username }}? This action cannot be undone and will delete all associated data.')">
+                                        Delete
+                                    </button>
+                                </form>
+                                {% else %}
+                                <span class="text-gray-500">Current User</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        {% if users.pages > 1 %}
+        <div class="px-6 py-4 border-t border-gray-700">
+            <div class="flex justify-between items-center">
+                <div class="text-sm text-gray-400">
+                    Showing {{ users.per_page * (users.page - 1) + 1 }} to {{ users.per_page * users.page if users.page < users.pages else users.total }} of {{ users.total }} users
+                </div>
+                <div class="flex space-x-2">
+                    {% if users.has_prev %}
+                    <a href="{{ url_for('admin.users', page=users.prev_num) }}" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">
+                        Previous
+                    </a>
+                    {% endif %}
+                    
+                    {% for page_num in users.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != users.page %}
+                            <a href="{{ url_for('admin.users', page=page_num) }}" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">
+                                {{ page_num }}
+                            </a>
+                            {% else %}
+                            <span class="px-3 py-1 bg-neon-green text-black rounded">
+                                {{ page_num }}
+                            </span>
+                            {% endif %}
+                        {% else %}
+                        <span class="px-3 py-1 text-gray-400">...</span>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if users.has_next %}
+                    <a href="{{ url_for('admin.users', page=users.next_num) }}" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">
+                        Next
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="px-6 py-8 text-center">
+            <p class="text-gray-400">No users found.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

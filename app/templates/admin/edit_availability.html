@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Availability - Admin{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-neon-green mb-2">Edit Availability</h1>
+        <p class="text-gray-400">Editing availability for {{ availability.user.username }}</p>
+    </div>
+
+    <!-- Admin Warning -->
+    <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-400">Administrative Action</h3>
+                <div class="mt-2 text-sm text-yellow-300">
+                    You are editing another user's availability entry. This action will be logged in the audit trail.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Form -->
+    <div class="bg-dark-gray rounded-lg shadow-lg p-6">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <!-- User Info -->
+            <div class="mb-6 p-4 bg-gray-800 rounded-lg">
+                <h3 class="text-lg font-medium text-white mb-2">User Information</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-400">Username:</span>
+                        <span class="text-white ml-2">{{ availability.user.username }}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Role:</span>
+                        <span class="text-white ml-2">{{ availability.user.role }}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Created:</span>
+                        <span class="text-white ml-2">{{ availability.created_at.strftime('%m/%d/%Y %H:%M') }}</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Last Updated:</span>
+                        <span class="text-white ml-2">{{ availability.updated_at.strftime('%m/%d/%Y %H:%M') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="space-y-6">
+                <div>
+                    {{ form.date.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                    {{ form.date(class="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent") }}
+                    {% if form.date.errors %}
+                        {% for error in form.date.errors %}
+                            <p class="mt-1 text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        {{ form.start_time.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                        {{ form.start_time(class="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent") }}
+                        {% if form.start_time.errors %}
+                            {% for error in form.start_time.errors %}
+                                <p class="mt-1 text-sm text-red-400">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {{ form.end_time.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                        {{ form.end_time(class="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent") }}
+                        {% if form.end_time.errors %}
+                            {% for error in form.end_time.errors %}
+                                <p class="mt-1 text-sm text-red-400">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="mt-8 flex justify-between">
+                <a href="{{ url_for('admin.manage_availability') }}" 
+                   class="px-4 py-2 border border-gray-600 text-gray-300 font-medium rounded-md hover:bg-gray-700 transition-colors">
+                    Cancel
+                </a>
+                <button type="submit" 
+                        class="px-6 py-2 bg-neon-green text-black font-medium rounded-md hover:bg-green-400 transition-colors">
+                    Update Availability
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

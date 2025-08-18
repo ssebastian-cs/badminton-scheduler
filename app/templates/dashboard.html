@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Header Section -->
+    <div class="mb-8 text-center sm:text-left">
+        <h1 class="text-2xl sm:text-3xl font-bold text-neon-green mb-2 shadow-neon">
+            Welcome, {{ current_user.username }}! 🏸
+        </h1>
+        <p class="text-gray-400 text-sm sm:text-base">Your badminton availability dashboard</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a href="{{ url_for('availability.add_availability') }}" 
+           class="bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 hover:shadow-neon-lg transition-all text-center shadow-neon">
+            <span class="inline-block mr-2">➕</span>Add Availability
+        </a>
+        <a href="{{ url_for('availability.my_availability') }}" 
+           class="bg-dark-gray text-white px-6 py-3 rounded-lg font-medium hover:bg-light-gray border border-gray-600 hover:border-neon-green transition-all text-center">
+            <span class="inline-block mr-2">📅</span>My Availability
+        </a>
+        {% if current_user.is_admin() %}
+            <a href="{{ url_for('admin.dashboard') }}" 
+               class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-500 transition-all text-center">
+                <span class="inline-block mr-2">⚙️</span>Admin Panel
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- View Filter Section -->
+    <div class="mb-6 bg-dark-gray rounded-lg p-4 sm:p-6 shadow-lg border border-gray-700">
+        <h3 class="text-lg font-medium text-white mb-4">📊 Filter Availability</h3>
+        
+        <!-- Quick Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <a href="{{ url_for('availability.dashboard', view='today') }}" 
+               class="px-4 py-2 rounded-lg text-sm font-medium transition-all
+                      {% if view_type == 'today' %}bg-neon-green text-black shadow-neon{% else %}bg-gray-700 text-white hover:bg-gray-600 hover:text-neon-green{% endif %}">
+                📅 Today
+            </a>
+            <a href="{{ url_for('availability.dashboard', view='week') }}" 
+               class="px-4 py-2 rounded-lg text-sm font-medium transition-all
+                      {% if view_type == 'week' %}bg-neon-green text-black shadow-neon{% else %}bg-gray-700 text-white hover:bg-gray-600 hover:text-neon-green{% endif %}">
+                📆 This Week
+            </a>
+            <a href="{{ url_for('availability.dashboard', view='month') }}" 
+               class="px-4 py-2 rounded-lg text-sm font-medium transition-all
+                      {% if view_type == 'month' %}bg-neon-green text-black shadow-neon{% else %}bg-gray-700 text-white hover:bg-gray-600 hover:text-neon-green{% endif %}">
+                🗓️ This Month
+            </a>
+        </div>
+
+        <!-- Custom Date Range Filter -->
+        <div class="border-t border-gray-600 pt-4">
+            <h4 class="text-sm font-medium text-gray-300 mb-3">Custom Date Range</h4>
+            <form method="GET" class="flex flex-col sm:flex-row gap-4 items-end">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input type="hidden" name="view" value="custom">
+                <div class="flex-1 min-w-0">
+                    <label for="start_date" class="block text-sm font-medium text-gray-300 mb-1">Start Date</label>
+                    <input type="date" name="start_date" id="start_date" 
+                           value="{% if filter_form.start_date.data %}{{ filter_form.start_date.data }}{% endif %}"
+                           class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm focus:ring-neon-green focus:border-neon-green transition-colors">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <label for="end_date" class="block text-sm font-medium text-gray-300 mb-1">End Date</label>
+                    <input type="date" name="end_date" id="end_date" 
+                           value="{% if filter_form.end_date.data %}{{ filter_form.end_date.data }}{% endif %}"
+                           class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm focus:ring-neon-green focus:border-neon-green transition-colors">
+                </div>
+                <button type="submit" 
+                        class="bg-gray-700 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-gray-600 hover:text-neon-green transition-all border border-gray-600 hover:border-neon-green">
+                    🔍 Filter
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Current View Info -->
+    <div class="mb-6">
+        <h2 class="text-xl font-semibold text-white mb-2">
+            {% if view_type == 'today' %}
+                Today's Availability
+            {% elif view_type == 'week' %}
+                This Week's Availability
+            {% elif view_type == 'month' %}
+                This Month's Availability
+            {% else %}
+                Availability from {{ start_date.strftime('%B %d, %Y') }} to {{ end_date.strftime('%B %d, %Y') }}
+            {% endif %}
+        </h2>
+        <p class="text-gray-400 text-sm">
+            Showing availability from {{ start_date.strftime('%B %d, %Y') }} to {{ end_date.strftime('%B %d, %Y') }}
+        </p>
+    </div>
+
+    <!-- Availability Entries -->
+    {% if entries_by_date %}
+        <div class="space-y-4 sm:space-y-6">
+            {% for entry_date, users_data in entries_by_date.items() %}
+                <div class="bg-dark-gray rounded-lg shadow-lg border border-gray-700 hover:border-neon-green transition-colors availability-card">
+                    <!-- Date Header -->
+                    <div class="p-4 sm:p-6 border-b border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-semibold text-neon-green flex items-center flex-wrap">
+                            <span class="mr-2">📅</span>
+                            <span class="hidden sm:inline">{{ entry_date.strftime('%A, %B %d, %Y') }}</span>
+                            <span class="sm:hidden">{{ entry_date.strftime('%a, %b %d, %Y') }}</span>
+                            {% if entry_date == start_date and view_type == 'today' %}
+                                <span class="ml-2 text-sm text-gray-400 bg-gray-800 px-2 py-1 rounded">(Today)</span>
+                            {% endif %}
+                        </h3>
+                        <p class="text-sm text-gray-400 mt-1">{{ users_data|length }} player{% if users_data|length != 1 %}s{% endif %} available</p>
+                    </div>
+                    
+                    <!-- Mobile List View -->
+                    <div class="calendar-mobile p-4 space-y-4">
+                        {% for user_id, user_data in users_data.items() %}
+                            <div class="availability-entry-mobile {% if user_data.user.id == current_user.id %}border-neon-green shadow-neon{% else %}border-gray-600{% endif %}">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-neon-green rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                            <span class="text-black font-bold text-sm">{{ user_data.user.username[0].upper() }}</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-white">{{ user_data.user.username }}</p>
+                                            <div class="flex items-center space-x-2">
+                                                {% if user_data.user.is_admin() %}
+                                                    <span class="bg-neon-green text-black px-2 py-1 rounded text-xs font-bold">ADMIN</span>
+                                                {% endif %}
+                                                {% if user_data.user.id == current_user.id %}
+                                                    <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">YOU</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Multiple time slots for this user -->
+                                <div class="space-y-2">
+                                    {% for entry in user_data.entries %}
+                                        <div class="time-display-mobile text-center py-2 bg-gray-900 rounded flex items-center justify-between">
+                                            <div class="flex-1 text-center">
+                                                <span class="font-medium text-neon-green">{{ entry.start_time.strftime('%I:%M %p') }}</span>
+                                                <span class="mx-2 text-gray-500">→</span>
+                                                <span class="font-medium text-neon-green">{{ entry.end_time.strftime('%I:%M %p') }}</span>
+                                            </div>
+                                            {% if entry.user_id == current_user.id or current_user.is_admin() %}
+                                                <div class="flex gap-1 ml-2">
+                                                    <a href="{{ url_for('availability.edit_availability', id=entry.id) }}" 
+                                                       class="touch-target text-neon-green hover:text-green-400 text-xs transition-colors">
+                                                        ✏️
+                                                    </a>
+                                                    <form method="POST" action="{{ url_for('availability.delete_availability', id=entry.id) }}" 
+                                                          class="inline" onsubmit="return confirm('Are you sure you want to delete this availability?')">
+                                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                                        <button type="submit" class="touch-target text-red-400 hover:text-red-300 text-xs transition-colors">
+                                                            🗑️
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Desktop Grid View -->
+                    <div class="calendar-desktop p-4 sm:p-6">
+                        <div class="mobile-grid sm:tablet-grid lg:desktop-grid">
+                            {% for user_id, user_data in users_data.items() %}
+                                <div class="bg-gray-800 rounded-lg p-4 border-l-4 hover:bg-gray-750 transition-colors availability-card
+                                            {% if user_data.user.id == current_user.id %}border-neon-green shadow-neon{% else %}border-gray-600{% endif %}">
+                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
+                                        <div class="mb-2 sm:mb-0">
+                                            <div class="flex items-center mb-1">
+                                                <div class="w-8 h-8 bg-neon-green rounded-full flex items-center justify-center mr-2">
+                                                    <span class="text-black font-bold text-sm">{{ user_data.user.username[0].upper() }}</span>
+                                                </div>
+                                                <p class="font-medium text-white">{{ user_data.user.username }}</p>
+                                            </div>
+                                            <div class="flex flex-wrap gap-1">
+                                                {% if user_data.user.is_admin() %}
+                                                    <span class="bg-neon-green text-black px-2 py-1 rounded text-xs font-bold shadow-neon">ADMIN</span>
+                                                {% endif %}
+                                                {% if user_data.user.id == current_user.id %}
+                                                    <span class="bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">YOU</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Multiple time slots for this user -->
+                                    <div class="space-y-2">
+                                        {% for entry in user_data.entries %}
+                                            <div class="text-gray-300 bg-gray-900 rounded p-3 flex items-center justify-between">
+                                                <div class="flex items-center flex-1">
+                                                    <span class="mr-2">🕐</span>
+                                                    <span class="font-medium text-neon-green">{{ entry.start_time.strftime('%I:%M %p') }}</span>
+                                                    <span class="mx-2 text-gray-500">→</span>
+                                                    <span class="font-medium text-neon-green">{{ entry.end_time.strftime('%I:%M %p') }}</span>
+                                                </div>
+                                                {% if entry.user_id == current_user.id or current_user.is_admin() %}
+                                                    <div class="flex gap-2 ml-3">
+                                                        <a href="{{ url_for('availability.edit_availability', id=entry.id) }}" 
+                                                           class="text-neon-green hover:text-green-400 text-sm font-medium transition-colors">✏️</a>
+                                                        <form method="POST" action="{{ url_for('availability.delete_availability', id=entry.id) }}" 
+                                                              class="inline" onsubmit="return confirm('Are you sure you want to delete this availability?')">
+                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                                            <button type="submit" class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors">🗑️</button>
+                                                        </form>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="bg-dark-gray rounded-lg shadow-lg p-8 text-center border border-gray-700">
+            <div class="text-gray-400 mb-6">
+                <div class="w-16 h-16 mx-auto mb-4 bg-gray-800 rounded-full flex items-center justify-center">
+                    <span class="text-2xl">📅</span>
+                </div>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">No availability found</h3>
+            <p class="text-gray-400 mb-6">
+                {% if view_type == 'today' %}
+                    No one is available today. Be the first to add your availability!
+                {% else %}
+                    No availability entries found for the selected period.
+                {% endif %}
+            </p>
+            <a href="{{ url_for('availability.add_availability') }}" 
+               class="inline-block bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 hover:shadow-neon-lg transition-all shadow-neon">
+                <span class="mr-2">➕</span>Add Your Availability
+            </a>
+        </div>
+    {% endif %}
+
+    {% if current_user.is_admin() %}
+    <div class="mt-8 p-4 bg-neon-green bg-opacity-10 border border-neon-green rounded-md">
+        <p class="text-neon-green font-medium">
+            <strong>Admin Note:</strong> You can edit and delete any user's availability entries. Your admin privileges are indicated by the green accent on your entries.
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
