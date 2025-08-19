@@ -59,6 +59,12 @@ def create_app(config_name='development'):
     from .error_tracking import error_tracker
     error_tracker.init_app(app)
     
+    # Initialize database performance monitoring
+    from .db_performance import init_db_performance
+    from .db_logging import init_db_logging
+    init_db_logging(app)
+    optimizer = init_db_performance(app, db)
+    
     # Comprehensive security middleware
     @app.before_request
     def security_checks():
@@ -88,14 +94,14 @@ def create_app(config_name='development'):
                     from flask import abort
                     abort(429)
             elif request.method == 'POST' and not request.endpoint.startswith('static'):
-                # Rate limiting for form submissions
-                if rate_limiter.is_rate_limited(f"form_{client_ip}", max_requests=20, window_minutes=10):
+                # Rate limiting for form submissions - more lenient for development
+                if rate_limiter.is_rate_limited(f"form_{client_ip}", max_requests=50, window_minutes=10):
                     log_security_event('FORM_RATE_LIMIT_EXCEEDED', f'Form submission rate limit exceeded for IP: {client_ip}', 'WARNING')
                     from flask import abort
                     abort(429)
             elif not request.endpoint.startswith('static'):
-                # General rate limiting for non-static requests
-                if rate_limiter.is_rate_limited(client_ip, max_requests=100, window_minutes=60):
+                # General rate limiting for non-static requests - more lenient
+                if rate_limiter.is_rate_limited(client_ip, max_requests=200, window_minutes=60):
                     log_security_event('RATE_LIMIT_EXCEEDED', f'Rate limit exceeded for IP: {client_ip}', 'WARNING')
                     from flask import abort
                     abort(429)

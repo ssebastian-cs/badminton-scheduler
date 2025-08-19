@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+
+{% block title %}Database Performance Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h3 mb-4">Database Performance Dashboard</h1>
+            
+            {% if metrics.error %}
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> {{ metrics.error }}
+                </div>
+            {% else %}
+                <!-- Performance Summary Cards -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Total Queries</h6>
+                                        <h3>{{ metrics.monitor.query_stats.total_queries or 0 }}</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-database fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Avg Query Time</h6>
+                                        <h3>{{ "%.2f"|format(metrics.monitor.query_stats.avg_query_time * 1000) }}ms</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-clock fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Cache Hit Rate</h6>
+                                        <h3>{{ "%.1f"|format(metrics.monitor.cache_stats.hit_rate * 100) }}%</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-memory fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h6 class="card-title">Active Connections</h6>
+                                        <h3>{{ metrics.monitor.connection_stats.active_connections or 0 }}</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-plug fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Query Performance Section -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Slowest Queries</h5>
+                            </div>
+                            <div class="card-body">
+                                {% if metrics.monitor.query_stats.slowest_queries %}
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Query</th>
+                                                    <th>Avg Time</th>
+                                                    <th>Max Time</th>
+                                                    <th>Count</th>
+                                                    <th>Total Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for query in metrics.monitor.query_stats.slowest_queries[:10] %}
+                                                <tr>
+                                                    <td>
+                                                        <code class="small">{{ query.query[:80] }}{% if query.query|length > 80 %}...{% endif %}</code>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-{% if query.avg_time > 0.1 %}danger{% elif query.avg_time > 0.05 %}warning{% else %}success{% endif %}">
+                                                            {{ "%.2f"|format(query.avg_time * 1000) }}ms
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ "%.2f"|format(query.max_time * 1000) }}ms</td>
+                                                    <td>{{ query.count }}</td>
+                                                    <td>{{ "%.2f"|format(query.total_time * 1000) }}ms</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                {% else %}
+                                    <p class="text-muted">No query data available.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Connection Pool Stats</h5>
+                            </div>
+                            <div class="card-body">
+                                <dl class="row">
+                                    <dt class="col-sm-8">Total Connections:</dt>
+                                    <dd class="col-sm-4">{{ metrics.monitor.connection_stats.total_connections or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-8">Active Connections:</dt>
+                                    <dd class="col-sm-4">{{ metrics.monitor.connection_stats.active_connections or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-8">Peak Connections:</dt>
+                                    <dd class="col-sm-4">{{ metrics.monitor.connection_stats.peak_connections or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-8">Connection Errors:</dt>
+                                    <dd class="col-sm-4">
+                                        <span class="badge badge-{% if metrics.monitor.connection_stats.connection_errors > 0 %}danger{% else %}success{% endif %}">
+                                            {{ metrics.monitor.connection_stats.connection_errors or 0 }}
+                                        </span>
+                                    </dd>
+                                    
+                                    <dt class="col-sm-8">Pool Size:</dt>
+                                    <dd class="col-sm-4">{{ metrics.monitor.connection_stats.pool_size or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-8">Pool Overflow:</dt>
+                                    <dd class="col-sm-4">{{ metrics.monitor.connection_stats.pool_overflow or 0 }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cache Statistics -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Cache Statistics</h5>
+                            </div>
+                            <div class="card-body">
+                                <dl class="row">
+                                    <dt class="col-sm-6">Cache Hits:</dt>
+                                    <dd class="col-sm-6">{{ metrics.monitor.cache_stats.hits or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-6">Cache Misses:</dt>
+                                    <dd class="col-sm-6">{{ metrics.monitor.cache_stats.misses or 0 }}</dd>
+                                    
+                                    <dt class="col-sm-6">Hit Rate:</dt>
+                                    <dd class="col-sm-6">
+                                        <span class="badge badge-{% if metrics.monitor.cache_stats.hit_rate > 0.8 %}success{% elif metrics.monitor.cache_stats.hit_rate > 0.5 %}warning{% else %}danger{% endif %}">
+                                            {{ "%.1f"|format(metrics.monitor.cache_stats.hit_rate * 100) }}%
+                                        </span>
+                                    </dd>
+                                    
+                                    <dt class="col-sm-6">Cache Size:</dt>
+                                    <dd class="col-sm-6">{{ metrics.cache.size or 0 }} / {{ metrics.cache.max_size or 0 }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Performance Controls</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-warning" onclick="resetStats()">
+                                        <i class="fas fa-redo"></i> Reset Statistics
+                                    </button>
+                                    
+                                    <button type="button" class="btn btn-info" onclick="invalidateCache()">
+                                        <i class="fas fa-trash"></i> Clear Cache
+                                    </button>
+                                    
+                                    <button type="button" class="btn btn-primary" onclick="refreshData()">
+                                        <i class="fas fa-sync"></i> Refresh Data
+                                    </button>
+                                    
+                                    <a href="{{ url_for('health.database_test') }}" class="btn btn-secondary">
+                                        <i class="fas fa-vial"></i> Run Database Test
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Slow Queries -->
+                {% if slow_queries %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Recent Slow Queries</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Timestamp</th>
+                                                <th>Duration</th>
+                                                <th>Query</th>
+                                                <th>Parameters</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for query in slow_queries %}
+                                            <tr>
+                                                <td>
+                                                    <small>{{ query.timestamp }}</small>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-{% if query.duration > 1.0 %}danger{% elif query.duration > 0.5 %}warning{% else %}info{% endif %}">
+                                                        {{ "%.3f"|format(query.duration) }}s
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <code class="small">{{ query.query[:100] }}{% if query.query|length > 100 %}...{% endif %}</code>
+                                                </td>
+                                                <td>
+                                                    {% if query.params %}
+                                                        <small class="text-muted">{{ query.params[:50] }}{% if query.params|length > 50 %}...{% endif %}</small>
+                                                    {% else %}
+                                                        <small class="text-muted">None</small>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function resetStats() {
+    if (confirm('Are you sure you want to reset all performance statistics?')) {
+        fetch('{{ url_for("health.reset_performance_stats") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Performance statistics reset successfully');
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error resetting statistics: ' + error);
+        });
+    }
+}
+
+function invalidateCache() {
+    if (confirm('Are you sure you want to clear the query cache?')) {
+        fetch('{{ url_for("health.invalidate_cache") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Cache cleared successfully');
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error clearing cache: ' + error);
+        });
+    }
+}
+
+function refreshData() {
+    location.reload();
+}
+
+// Auto-refresh every 30 seconds
+setInterval(function() {
+    if (document.visibilityState === 'visible') {
+        location.reload();
+    }
+}, 30000);
+</script>
+{% endblock %}

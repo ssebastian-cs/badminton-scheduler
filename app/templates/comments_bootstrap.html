@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Comments - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h2 mb-1">Team Comments</h1>
+                <p class="text-muted mb-0">Share updates and coordinate with your team</p>
+            </div>
+            <a href="{{ url_for('availability.dashboard') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Add Comment Form -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-chat-square-text me-2"></i>Add New Comment</h5>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('comments.add_comment') }}">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.content.label(class="form-label") }}
+                {{ form.content(class="form-control" + (" is-invalid" if form.content.errors else ""), rows="3", placeholder="Share your thoughts with the team...") }}
+                {% if form.content.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-end">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Comments List -->
+{% if comments %}
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">Recent Comments ({{ comments|length }})</h4>
+            
+            {% for comment in comments %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="user-avatar me-3">
+                                    {{ comment.user.username[0].upper() }}
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">{{ comment.user.username }}</h6>
+                                    {% if comment.user.is_admin() %}
+                                        <span class="badge bg-success">Admin</span>
+                                    {% endif %}
+                                    {% if comment.user.id == current_user.id %}
+                                        <span class="badge bg-primary">You</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                {{ comment.created_at.strftime('%b %d, %Y at %I:%M %p') }}
+                            </small>
+                        </div>
+                        
+                        <div class="comment-content">
+                            <p class="mb-0">{{ comment.content }}</p>
+                        </div>
+                        
+                        {% if comment.user.id == current_user.id or current_user.is_admin() %}
+                        <div class="mt-3 pt-3 border-top">
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-sm btn-outline-primary me-2" onclick="alert('Edit comment coming soon!')">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </button>
+                                <form method="POST" action="#" class="d-inline" onsubmit="return confirm('Delete this comment?')">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="alert('Delete comment coming soon!')">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <i class="bi bi-chat-square display-1 text-muted mb-3"></i>
+            <h5>No comments yet</h5>
+            <p class="text-muted mb-4">Be the first to share a comment with your team!</p>
+            <button class="btn btn-primary" onclick="document.querySelector('#content').focus()">
+                <i class="bi bi-chat-square-text me-1"></i>Add First Comment
+            </button>
+        </div>
+    </div>
+{% endif %}
+
+<!-- Comment Guidelines -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Comment Guidelines:</strong> Keep comments respectful and relevant to badminton scheduling. 
+            {% if current_user.is_admin() %}
+            As an admin, you can moderate all comments.
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Auto-resize textarea
+document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.querySelector('#content');
+    if (textarea) {
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    }
+});
+</script>
+{% endblock %}

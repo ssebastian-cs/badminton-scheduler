@@ -69,7 +69,7 @@ def dashboard():
         # Log user activity
         log_user_activity('viewed_dashboard', {'view_type': view_type})
         
-        return render_template('dashboard.html', 
+        return render_template('dashboard_bootstrap.html', 
                              entries_by_date=entries_by_date,
                              view_type=view_type,
                              start_date=start_date,
@@ -83,7 +83,7 @@ def dashboard():
 
 @availability_bp.route('/availability/add', methods=['GET', 'POST'])
 @login_required
-@rate_limit_endpoint(max_requests=10, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=20, window_minutes=10, per_user=True)
 def add_availability():
     """Add new availability entry."""
     form = AvailabilityForm()
@@ -99,6 +99,10 @@ def add_availability():
             
             # Use safe database operation
             if safe_create_record(availability, "availability", "Availability added successfully!"):
+                # Invalidate relevant cache entries
+                from ..db_queries import CacheManager
+                CacheManager.invalidate_availability_cache(current_user.id, form.date.data)
+                
                 log_user_activity('added_availability', {
                     'date': str(form.date.data),
                     'start_time': str(form.start_time.data),
@@ -115,12 +119,12 @@ def add_availability():
         if form.errors:
             ErrorHandler.handle_validation_error(form.errors, "availability form")
     
-    return render_template('availability/add.html', form=form)
+    return render_template('availability/add_bootstrap.html', form=form)
 
 
 @availability_bp.route('/availability/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
-@rate_limit_endpoint(max_requests=10, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=20, window_minutes=10, per_user=True)
 def edit_availability(id):
     """Edit availability entry."""
     # Safely get the availability record
@@ -144,6 +148,10 @@ def edit_availability(id):
             
             # Use safe database operation
             if safe_update_record(availability, "availability", "Availability updated successfully!"):
+                # Invalidate relevant cache entries
+                from ..db_queries import CacheManager
+                CacheManager.invalidate_availability_cache(current_user.id, form.date.data)
+                
                 log_user_activity('updated_availability', {
                     'availability_id': id,
                     'date': str(form.date.data),
@@ -161,12 +169,12 @@ def edit_availability(id):
         if form.errors:
             ErrorHandler.handle_validation_error(form.errors, "availability form")
     
-    return render_template('availability/edit.html', form=form, availability=availability)
+    return render_template('availability/edit_bootstrap.html', form=form, availability=availability)
 
 
 @availability_bp.route('/availability/delete/<int:id>', methods=['POST'])
 @login_required
-@rate_limit_endpoint(max_requests=5, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=10, window_minutes=10, per_user=True)
 def delete_availability(id):
     """Delete availability entry."""
     # Safely get the availability record
@@ -180,6 +188,10 @@ def delete_availability(id):
     
     # Use safe database operation
     if safe_delete_record(availability, "availability", "Availability deleted successfully!"):
+        # Invalidate relevant cache entries
+        from ..db_queries import CacheManager
+        CacheManager.invalidate_availability_cache(current_user.id, availability.date)
+        
         log_user_activity('deleted_availability', {
             'availability_id': id,
             'date': str(availability.date),
@@ -195,14 +207,13 @@ def delete_availability(id):
 def my_availability():
     """View current user's availability entries."""
     try:
-        entries = Availability.query.filter_by(user_id=current_user.id).filter(
-            Availability.date >= date.today()
-        ).order_by(Availability.date, Availability.start_time).all()
+        from ..db_queries import OptimizedQueries
+        entries = OptimizedQueries.get_user_future_availability(current_user.id)
         
         # Log user activity
         log_user_activity('viewed_my_availability', {'entries_count': len(entries)})
         
-        return render_template('availability/my_availability.html', entries=entries)
+        return render_template('availability/my_availability_bootstrap.html', entries=entries)
     
     except Exception as e:
         ErrorHandler.handle_database_error(e, "loading your availability entries")
@@ -214,3 +225,81 @@ def my_availability():
 def availability_dashboard():
     """Dedicated availability dashboard route for admins and users."""
     return dashboard()
+@availability_bp.route('/bootstrap-test')
+@login_required
+def bootstrap_test():
+    """Test route to demonstrate Bootstrap templates."""
+    # Use the same logic as the main dashboard but render Bootstrap template
+    try:
+        # Get filter parameters
+        view_type = request.args.get('view', 'today')
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
+        
+        # Calculate date range using utility function
+        try:
+            start_date, end_date = get_date_range_filter(view_type, start_date, end_date)
+        except ValueError:
+            FlashMessageHelper.error('Invalid date format. Using today\'s view.')
+            view_type = 'today'
+            start_date, end_date = get_date_range_filter('today')
+        
+        # Query availability entries with error handling
+        try:
+            query = Availability.query.join(User).filter(
+                Availability.date >= start_date,
+                Availability.date <= end_date,
+                User.is_active == True
+            ).order_by(Availability.date, Availability.start_time)
+            
+            availability_entries = query.all()
+        except Exception as e:
+            ErrorHandler.handle_database_error(e, "loading availability data")
+            availability_entries = []
+        
+        # Group entries by date, then by user for better display
+        entries_by_date = {}
+        for entry in availability_entries:
+            entry_date = entry.date
+            if entry_date not in entries_by_date:
+                entries_by_date[entry_date] = {}
+            
+            user_id = entry.user_id
+            if user_id not in entries_by_date[entry_date]:
+                entries_by_date[entry_date][user_id] = {
+                    'user': entry.user,
+                    'entries': []
+                }
+            
+            entries_by_date[entry_date][user_id]['entries'].append(entry)
+        
+        # Sort dates
+        entries_by_date = dict(sorted(entries_by_date.items()))
+        
+        # Create filter form for date range selection
+        filter_form = AvailabilityFilterForm()
+        if start_date:
+            filter_form.start_date.data = start_date
+        if end_date:
+            filter_form.end_date.data = end_date
+        
+        log_user_activity(current_user.id, 'VIEW_BOOTSTRAP_DASHBOARD', f'Viewed Bootstrap dashboard with {view_type} filter')
+        
+        return render_template('dashboard_bootstrap.html',
+                             entries_by_date=entries_by_date,
+                             start_date=start_date,
+                             end_date=end_date,
+                             view_type=view_type,
+                             filter_form=filter_form)
+    
+    except Exception as e:
+        ErrorHandler.handle_unexpected_error(e, "loading Bootstrap dashboard")
+        return redirect(url_for('availability.dashboard'))
+
+
+@availability_bp.route('/bootstrap-login-test')
+def bootstrap_login_test():
+    """Test route to demonstrate Bootstrap login template."""
+    from ..forms import LoginForm
+    form = LoginForm()
+    return render_template('auth/login_bootstrap.html', form=form)

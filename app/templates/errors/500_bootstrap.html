@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="text-center">
+                <div class="mb-4">
+                    <h1 class="display-1 fw-bold text-danger">500</h1>
+                    <h2 class="h3 fw-semibold text-light mb-3">Server Error</h2>
+                    <p class="text-muted mb-4">
+                        An internal server error occurred. The issue has been logged and will be investigated.
+                    </p>
+                </div>
+                
+                <div class="d-grid gap-3">
+                    <a href="{{ url_for('availability.dashboard') }}" 
+                       class="btn btn-neon btn-mobile neon-glow">
+                        <span class="me-2">🏠</span>Return to Dashboard
+                    </a>
+                    <div>
+                        <a href="{{ url_for('auth.login') }}" 
+                           class="text-primary text-decoration-none">
+                            Login Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

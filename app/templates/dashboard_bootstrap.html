@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h2 mb-1">Welcome back, {{ current_user.username }}!</h1>
+                <p class="text-muted mb-0">Manage your badminton availability</p>
+            </div>
+            <a href="{{ url_for('availability.add_availability') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i>Add Availability
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <span class="stat-number">{{ entries_by_date|length }}</span>
+        <span class="stat-label">Days with Availability</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ total_entries or 0 }}</span>
+        <span class="stat-label">Total Time Slots</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ active_users or 0 }}</span>
+        <span class="stat-label">Active Players</span>
+    </div>
+    {% if current_user.is_admin() %}
+    <div class="stat-card">
+        <span class="stat-number"><i class="bi bi-gear"></i></span>
+        <span class="stat-label">Admin Access</span>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Filter Section -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-funnel me-2"></i>Filter Availability</h5>
+    </div>
+    <div class="card-body">
+        <!-- Quick Filter Buttons -->
+        <div class="btn-group mb-3" role="group">
+            <a href="{{ url_for('availability.dashboard', view='today') }}" 
+               class="btn {% if view_type == 'today' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                Today
+            </a>
+            <a href="{{ url_for('availability.dashboard', view='week') }}" 
+               class="btn {% if view_type == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                This Week
+            </a>
+            <a href="{{ url_for('availability.dashboard', view='month') }}" 
+               class="btn {% if view_type == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                This Month
+            </a>
+        </div>
+
+        <!-- Custom Date Range -->
+        <form method="GET" class="row g-3">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type="hidden" name="view" value="custom">
+            <div class="col-md-4">
+                <label class="form-label">Start Date</label>
+                <input type="date" name="start_date" class="form-control"
+                       value="{% if filter_form.start_date.data %}{{ filter_form.start_date.data }}{% endif %}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">End Date</label>
+                <input type="date" name="end_date" class="form-control"
+                       value="{% if filter_form.end_date.data %}{{ filter_form.end_date.data }}{% endif %}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">&nbsp;</label>
+                <button type="submit" class="btn btn-outline-primary d-block">
+                    <i class="bi bi-search me-1"></i>Apply Filter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Current View Info -->
+<div class="row mb-3">
+    <div class="col-12">
+        <h4>
+            {% if view_type == 'today' %}
+                Today's Availability
+            {% elif view_type == 'week' %}
+                This Week's Availability
+            {% elif view_type == 'month' %}
+                This Month's Availability
+            {% else %}
+                Custom Range: {{ start_date.strftime('%b %d') }} - {{ end_date.strftime('%b %d, %Y') }}
+            {% endif %}
+        </h4>
+        <p class="text-muted">
+            Showing {{ start_date.strftime('%B %d, %Y') }} to {{ end_date.strftime('%B %d, %Y') }}
+        </p>
+    </div>
+</div>
+
+<!-- Availability Entries -->
+{% if entries_by_date %}
+    {% for entry_date, users_data in entries_by_date.items() %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-calendar-day me-2"></i>
+                        {{ entry_date.strftime('%A, %B %d, %Y') }}
+                        {% if entry_date == start_date and view_type == 'today' %}
+                            <span class="badge bg-primary ms-2">Today</span>
+                        {% endif %}
+                    </h5>
+                    <small class="text-muted">{{ users_data|length }} player{% if users_data|length != 1 %}s{% endif %}</small>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    {% for user_id, user_data in users_data.items() %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card {% if user_data.user.id == current_user.id %}border-success{% endif %}">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="user-avatar me-2">
+                                            {{ user_data.user.username[0].upper() }}
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">{{ user_data.user.username }}</h6>
+                                            <div>
+                                                {% if user_data.user.is_admin() %}
+                                                    <span class="badge bg-success">Admin</span>
+                                                {% endif %}
+                                                {% if user_data.user.id == current_user.id %}
+                                                    <span class="badge bg-primary">You</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Time slots -->
+                                    {% for entry in user_data.entries %}
+                                        <div class="time-slot {% if entry.user_id == current_user.id %}current-user{% endif %}">
+                                            <div>
+                                                <i class="bi bi-clock me-1"></i>
+                                                <strong>{{ entry.start_time.strftime('%I:%M %p') }}</strong>
+                                                <span class="mx-1">-</span>
+                                                <strong>{{ entry.end_time.strftime('%I:%M %p') }}</strong>
+                                            </div>
+                                            {% if entry.user_id == current_user.id or current_user.is_admin() %}
+                                                <div>
+                                                    <a href="{{ url_for('availability.edit_availability', id=entry.id) }}" 
+                                                       class="btn btn-sm btn-outline-primary me-1">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <form method="POST" action="{{ url_for('availability.delete_availability', id=entry.id) }}" 
+                                                          class="d-inline" onsubmit="return confirm('Delete this time slot?')">
+                                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="card">
+        <div class="card-body text-center py-5">
+            <i class="bi bi-calendar-x display-1 text-muted mb-3"></i>
+            <h5>No availability found</h5>
+            <p class="text-muted mb-4">
+                {% if view_type == 'today' %}
+                    No one is available today. Be the first to add your availability!
+                {% else %}
+                    No availability entries found for the selected period.
+                {% endif %}
+            </p>
+            <a href="{{ url_for('availability.add_availability') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i>Add Your Availability
+            </a>
+        </div>
+    </div>
+{% endif %}
+
+{% if current_user.is_admin() %}
+<div class="alert alert-info mt-4" role="alert">
+    <i class="bi bi-info-circle me-2"></i>
+    <strong>Admin Note:</strong> You can edit and delete any user's availability entries.
+</div>
+{% endif %}
+{% endblock %}

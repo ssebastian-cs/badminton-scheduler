@@ -118,9 +118,9 @@ class Availability(db.Model):
                 raise ValueError("End time must be after start time")
     
     def _validate_future_date(self):
-        """Validate that date is in the future."""
-        if self.date and self.date <= date.today():
-            raise ValueError("Date must be in the future")
+        """Validate that date is not in the past."""
+        if self.date and self.date < date.today():
+            raise ValueError("Date cannot be in the past")
     
     def _validate_reasonable_hours(self):
         """Validate that times are within reasonable hours."""
@@ -151,8 +151,8 @@ class Availability(db.Model):
         """Validate availability date."""
         if not availability_date:
             raise ValueError("Date is required")
-        if availability_date <= date.today():
-            raise ValueError("Date must be in the future")
+        if availability_date < date.today():
+            raise ValueError("Date cannot be in the past")
         return availability_date
     
     @validates('start_time')
@@ -160,6 +160,14 @@ class Availability(db.Model):
         """Validate start time."""
         if not start_time:
             raise ValueError("Start time is required")
+        
+        # If date is today, ensure time is in the future
+        if self.date and self.date == date.today():
+            from datetime import datetime
+            current_time = datetime.now().time()
+            if start_time <= current_time:
+                raise ValueError("For today's date, start time must be in the future")
+        
         return start_time
     
     @validates('end_time')

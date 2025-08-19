@@ -44,13 +44,15 @@ class Config:
     LOGIN_ATTEMPT_TIMEOUT = 300  # 5 minutes lockout after failed attempts
     MAX_LOGIN_ATTEMPTS = 3       # Maximum login attempts before lockout
     
-    # Database security
+    # Database performance and security (SQLite compatible)
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_pre_ping': True,
-        'pool_recycle': 300,
+        'pool_recycle': 3600,  # Increased to 1 hour
+        'echo': False,         # Disable SQL echo by default
         'connect_args': {
             'check_same_thread': False,
-            'timeout': 20
+            'timeout': 20,
+            'isolation_level': None  # Enable autocommit mode for SQLite
         }
     }
     
@@ -73,6 +75,18 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///badminton_scheduler_dev.db'
     SQLALCHEMY_ECHO = True  # Log SQL queries in development
+    
+    # SQLite-compatible database options for development
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'pool_pre_ping': True,
+        'pool_recycle': 3600,
+        'echo': True,  # Enable SQL echo in development
+        'connect_args': {
+            'check_same_thread': False,
+            'timeout': 20,
+            'isolation_level': None
+        }
+    }
 
 
 class ProductionConfig(Config):
@@ -100,15 +114,19 @@ class ProductionConfig(Config):
     # Stricter content limits
     MAX_CONTENT_LENGTH = 256 * 1024  # 256KB max request size in production
     
-    # Enhanced database security for production
+    # Enhanced database performance and security for production
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_pre_ping': True,
-        'pool_recycle': 300,
-        'pool_size': 10,
-        'max_overflow': 20,
+        'pool_recycle': 3600,  # 1 hour recycle time
+        'pool_size': 20,       # Larger pool for production
+        'max_overflow': 30,    # More overflow connections
+        'pool_timeout': 30,    # Connection timeout
+        'echo': False,         # Never echo SQL in production
+        'echo_pool': False,    # Disable pool logging
         'connect_args': {
             'check_same_thread': False,
-            'timeout': 10  # Shorter timeout in production
+            'timeout': 10,     # Shorter timeout in production
+            'isolation_level': None  # Enable autocommit mode
         }
     }
 
@@ -118,3 +136,13 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     WTF_CSRF_ENABLED = False  # Disable CSRF for testing
+    
+    # Simplified database options for SQLite testing
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'pool_pre_ping': True,
+        'echo': False,
+        'connect_args': {
+            'check_same_thread': False,
+            'timeout': 20
+        }
+    }

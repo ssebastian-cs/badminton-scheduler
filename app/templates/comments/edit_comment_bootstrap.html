@@ -1,0 +1,59 @@
+{% extends "base_bootstrap.html" %}
+
+{% block title %}Edit Comment - Badminton Scheduler{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="mb-4">
+                <h1 class="display-6 fw-bold text-primary neon-glow mb-2">Edit Comment</h1>
+                <p class="text-muted">Update your comment</p>
+            </div>
+
+            <div class="card card-dark-custom">
+                <div class="card-body">
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-4">
+                            {{ form.content.label(class="form-label text-light") }}
+                            {{ form.content(class="form-control form-control-dark", rows="6") }}
+                            {% if form.content.errors %}
+                                {% for error in form.content.errors %}
+                                    <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('comments.comments') }}" 
+                               class="btn btn-outline-secondary btn-mobile">
+                                Cancel
+                            </a>
+                            {{ form.submit(class="btn btn-neon btn-mobile", value="Update Comment") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Original Comment Info -->
+            <div class="card card-dark-custom mt-4">
+                <div class="card-body">
+                    <h6 class="card-title text-light mb-3">
+                        <span class="me-2">📝</span>Original Comment
+                    </h6>
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-primary text-dark me-3 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-weight: bold; font-size: 0.875rem;">
+                            {{ comment.user.username[0].upper() }}
+                        </div>
+                        <div>
+                            <span class="text-light small fw-semibold">{{ comment.user.username }}</span>
+                            <div class="text-muted small">{{ comment.created_at.strftime('%B %d, %Y at %I:%M %p') }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,18 +12,19 @@ comments_bp = Blueprint('comments', __name__)
 @login_required
 def comments():
     """Display all comments with author and timestamp information."""
-    # Get all comments ordered by creation date (newest first)
-    all_comments = Comment.query.join(User).order_by(desc(Comment.created_at)).all()
+    # Get all comments using optimized query
+    from ..db_queries import OptimizedQueries
+    all_comments = OptimizedQueries.get_recent_comments(100)  # Get last 100 comments
     
     # Create a new comment form
     form = CommentForm()
     
-    return render_template('comments/comments.html', comments=all_comments, form=form)
+    return render_template('comments_bootstrap.html', comments=all_comments, form=form)
 
 
 @comments_bp.route('/comments/add', methods=['POST'])
 @login_required
-@rate_limit_endpoint(max_requests=5, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=15, window_minutes=10, per_user=True)
 def add_comment():
     """Add new comment with content validation."""
     form = CommentForm()
@@ -38,6 +39,10 @@ def add_comment():
             
             db.session.add(comment)
             db.session.commit()
+            
+            # Invalidate comment cache
+            from ..db_queries import CacheManager
+            CacheManager.invalidate_comment_cache(current_user.id)
             
             flash('Comment posted successfully!', 'success')
         except ValueError as e:
@@ -87,7 +92,7 @@ def edit_comment(comment_id):
             flash('An error occurred while updating your comment. Please try again.', 'error')
             db.session.rollback()
     
-    return render_template('comments/edit_comment.html', form=form, comment=comment)
+    return render_template('comments/edit_comment_bootstrap.html', form=form, comment=comment)
 
 
 @comments_bp.route('/comments/<int:comment_id>/delete', methods=['POST'])

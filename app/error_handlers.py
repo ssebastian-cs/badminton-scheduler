@@ -200,7 +200,7 @@ def register_error_handlers(app):
         
         if request.is_json:
             return jsonify({'error': 'Forbidden', 'message': 'Access denied'}), 403
-        return render_template('errors/403.html'), 403
+        return render_template('errors/403_bootstrap.html'), 403
     
     @app.errorhandler(404)
     def not_found(error):
@@ -209,7 +209,7 @@ def register_error_handlers(app):
         
         if request.is_json:
             return jsonify({'error': 'Not found', 'message': 'Resource not found'}), 404
-        return render_template('errors/404.html'), 404
+        return render_template('errors/404_bootstrap.html'), 404
     
     @app.errorhandler(413)
     def request_entity_too_large(error):
@@ -259,7 +259,7 @@ def register_error_handlers(app):
         
         if request.is_json:
             return jsonify({'error': 'Internal server error', 'message': 'An unexpected error occurred'}), 500
-        return render_template('errors/500.html'), 500
+        return render_template('errors/500_bootstrap.html'), 500
     
     @app.errorhandler(SQLAlchemyError)
     def handle_database_error(error):

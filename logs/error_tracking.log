@@ -3,3 +3,95 @@
 2025-08-18 10:43:08,219 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)
 2025-08-18 10:43:08,222 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)
 2025-08-18 10:43:08,224 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The browser (or proxy) sent a request that this server could not understand. (Endpoint: static)
+2025-08-18 12:05:55,717 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-18 12:06:16,731 - CRITICAL - Error tracked: UNEXPECTED_ERROR - name 'current_user' is not defined (User: 1) (Endpoint: admin.create_user)
+2025-08-18 12:08:17,700 - CRITICAL - Error tracked: UNEXPECTED_ERROR - name 'current_user' is not defined (User: 1) (Endpoint: availability.add_availability)
+2025-08-18 12:08:21,456 - CRITICAL - Error tracked: UNEXPECTED_ERROR - name 'current_user' is not defined (User: 1) (Endpoint: availability.add_availability)
+2025-08-18 14:18:44,045 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:18:49,504 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:18:54,593 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:20:13,544 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:20:18,426 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:20:18,661 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:20:19,059 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:20:19,436 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:21:00,007 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-18 14:21:00,007 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:00:32,199 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:02:16,413 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:02:20,878 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:02:27,813 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:02:49,616 - CRITICAL - Error tracked: UNEXPECTED_ERROR - Could not build url for endpoint 'admin.availability'. Did you mean 'admin.edit_availability' instead? (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:09:35,258 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:09:41,467 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:48,305 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:09:48,414 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:49,800 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:09:49,800 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:49,900 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:49,900 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:50,735 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:50,736 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:53,895 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:53,896 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:55,570 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:55,571 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:57,515 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:57,516 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 6 critical errors in the last hour
+2025-08-19 09:09:59,766 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:09:59,767 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 7 critical errors in the last hour
+2025-08-19 09:09:59,894 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:09:59,895 - CRITICAL - ALERT [CRITICAL_ERRORS]: Critical errors detected: 7 critical errors in the last hour
+2025-08-19 09:16:53,154 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:16:56,739 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:17:02,627 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:05,787 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:17:05,885 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:07,280 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:17:07,373 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:08,056 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:08,667 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:09,500 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:10,016 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:15,510 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:23,022 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:17:24,721 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:35:03,006 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:35:08,139 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:11,689 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:35:11,806 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:12,880 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:35:12,980 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:13,473 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'moment' is undefined (User: 1) (Endpoint: admin.dashboard)
+2025-08-19 09:35:13,582 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:18,205 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:19,037 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:20,089 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:20,814 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. (User: 1)
+2025-08-19 09:35:22,957 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:36:45,562 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 09:37:02,400 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'app.forms.RegistrationForm object' has no attribute 'confirm_password' (User: 1) (Endpoint: admin.create_user)
+2025-08-19 09:37:20,679 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'hasattr' is undefined (User: 1) (Endpoint: admin.user_detail)
+2025-08-19 09:37:31,713 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'app.forms.RegistrationForm object' has no attribute 'confirm_password' (User: 1) (Endpoint: admin.create_user)
+2025-08-19 09:39:02,008 - WARNING - Error tracked: BAD_REQUEST - 400 Bad Request: The CSRF session token is missing. (Endpoint: auth.login)
+2025-08-19 09:45:22,631 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:46:02,428 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:46:05,591 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:46:10,019 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:46:52,501 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 1) (Endpoint: availability.add_availability)
+2025-08-19 09:47:00,296 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 1) (Endpoint: availability.add_availability)
+2025-08-19 09:47:04,537 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 1) (Endpoint: availability.add_availability)
+2025-08-19 09:47:24,915 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 1) (Endpoint: availability.add_availability)
+2025-08-19 09:47:32,901 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 1) (Endpoint: availability.add_availability)
+2025-08-19 09:49:39,681 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:49:44,884 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:49:47,864 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:49:49,131 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 09:49:52,999 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (Endpoint: auth.login)
+2025-08-19 09:49:55,934 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (Endpoint: auth.login)
+2025-08-19 09:49:57,229 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (Endpoint: auth.login)
+2025-08-19 09:49:58,164 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (Endpoint: auth.login)
+2025-08-19 09:49:59,724 - WARNING - Error tracked: RATE_LIMIT_EXCEEDED - 429 Too Many Requests: This user has exceeded an allotted request count. Try again later. (Endpoint: auth.login)
+2025-08-19 10:07:27,132 - INFO - Error tracked: NOT_FOUND - 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-08-19 10:07:48,036 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'No time zone found with key America/Edmonton' (User: 2) (Endpoint: availability.add_availability)
+2025-08-19 10:08:11,623 - CRITICAL - Error tracked: UNEXPECTED_ERROR - 'No time zone found with key America/Edmonton' (User: 2) (Endpoint: availability.add_availability)

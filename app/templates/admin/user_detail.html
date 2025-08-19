@@ -1,125 +1,349 @@
 {% extends "base.html" %}
 
-{% block title %}User Details: {{ user.username }} - Badminton Scheduler{% endblock %}
+{% block title %}User Details - Admin{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
-    <div class="mb-8 flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-bold text-neon-green mb-2">User Details</h1>
-            <p class="text-gray-400">Detailed information for {{ user.username }}</p>
-        </div>
-        <a href="{{ url_for('admin.users') }}" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-md hover:bg-gray-700 transition-colors">
-            Back to Users
-        </a>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- User Information -->
-        <div class="lg:col-span-2">
-            <div class="bg-dark-gray rounded-lg shadow-lg p-6 mb-6">
-                <h2 class="text-xl font-semibold text-white mb-4">User Information</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Username</label>
-                        <p class="text-white">{{ user.username }}</p>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">User ID</label>
-                        <p class="text-white">{{ user.id }}</p>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Role</label>
-                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {% if user.role == 'Admin' %}bg-yellow-900 text-yellow-200{% else %}bg-blue-900 text-blue-200{% endif %}">
-                            {{ user.role }}
-                        </span>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Status</label>
-                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {% if user.is_active %}bg-green-900 text-green-200{% else %}bg-red-900 text-red-200{% endif %}">
-                            {% if user.is_active %}Active{% else %}Blocked{% endif %}
-                        </span>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Created</label>
-                        <p class="text-white">{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h2 mb-1">User Details</h1>
+                <p class="text-muted mb-0">Detailed information for {{ user.username|e }}</p>
             </div>
+            <a href="{{ url_for('admin.users') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Back to Users
+            </a>
+        </div>
+    </div>
+</div>
 
-            <!-- User Actions -->
-            {% if user.id != current_user.id %}
-            <div class="bg-dark-gray rounded-lg shadow-lg p-6">
-                <h2 class="text-xl font-semibold text-white mb-4">User Actions</h2>
-                <div class="flex space-x-4">
-                    <form method="POST" action="{{ url_for('admin.toggle_user_status', user_id=user.id) }}" class="inline">
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="user-avatar mx-auto mb-3 rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                     style="width: 80px; height: 80px; font-size: 2rem;">
+                    {{ user.username[0].upper() if user.username else 'U' }}
+                </div>
+                <h4>{{ user.username|e }}</h4>
+                <div class="mb-3">
+                    {% if user.is_admin and user.is_admin() %}
+                        <span class="badge bg-success">
+                            <i class="bi bi-shield-check me-1"></i>Admin
+                        </span>
+                    {% else %}
+                        <span class="badge bg-primary">
+                            <i class="bi bi-person me-1"></i>User
+                        </span>
+                    {% endif %}
+                    {% if user.is_active %}
+                        <span class="badge bg-success ms-1">
+                            <i class="bi bi-check-circle me-1"></i>Active
+                        </span>
+                    {% else %}
+                        <span class="badge bg-danger ms-1">
+                            <i class="bi bi-x-circle me-1"></i>Inactive
+                        </span>
+                    {% endif %}
+                </div>
+                
+                {% if current_user and user.id != current_user.id %}
+                <div class="d-grid gap-2">
+                    <form method="POST" action="{{ url_for('admin.toggle_user_status', user_id=user.id) }}" class="d-inline">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                        <button type="submit" class="px-4 py-2 {% if user.is_active %}bg-red-600 hover:bg-red-700{% else %}bg-green-600 hover:bg-green-700{% endif %} text-white font-medium rounded-md transition-colors" 
-                                onclick="return confirm('Are you sure you want to {% if user.is_active %}block{% else %}unblock{% endif %} {{ user.username }}?')">
-                            {% if user.is_active %}Block User{% else %}Unblock User{% endif %}
+                        <input type="hidden" name="username" value="{{ user.username|e }}"/>
+                        <input type="hidden" name="is_active" value="{{ user.is_active|string|lower }}"/>
+                        <button type="submit" 
+                                class="btn btn-warning w-100" 
+                                onclick="return confirmToggleStatus(this)">
+                            <i class="bi bi-{{ 'pause' if user.is_active else 'play' }} me-1"></i>
+                            {{ 'Deactivate' if user.is_active else 'Activate' }}
                         </button>
                     </form>
                     
-                    <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}" class="inline">
+                    {% if not (user.is_admin and user.is_admin()) %}
+                    <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}" class="d-inline">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                        <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors" 
-                                onclick="return confirm('Are you sure you want to delete {{ user.username }}? This action cannot be undone and will delete all associated data.')">
-                            Delete User
+                        <input type="hidden" name="username" value="{{ user.username|e }}"/>
+                        <button type="submit" 
+                                class="btn btn-danger w-100" 
+                                onclick="return confirmDeleteUser(this)">
+                            <i class="bi bi-trash me-1"></i>Delete User
                         </button>
                     </form>
+                    {% endif %}
                 </div>
+                {% endif %}
             </div>
-            {% else %}
-            <div class="bg-dark-gray rounded-lg shadow-lg p-6">
-                <h2 class="text-xl font-semibold text-white mb-4">User Actions</h2>
-                <p class="text-gray-400">You cannot perform actions on your own account.</p>
-            </div>
-            {% endif %}
         </div>
-
-        <!-- User Statistics -->
-        <div class="lg:col-span-1">
-            <div class="bg-dark-gray rounded-lg shadow-lg p-6">
-                <h2 class="text-xl font-semibold text-white mb-4">Statistics</h2>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-300">Availability Entries</span>
-                        <span class="text-neon-green font-semibold">{{ stats.availability_count }}</span>
+        
+        <!-- Quick Actions Card -->
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-lightning me-2"></i>Quick Actions
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-user-id="{{ user.id }}" onclick="viewUserActivity(this.dataset.userId)">
+                        <i class="bi bi-activity me-1"></i>View Activity Log
+                    </button>
+                    <button type="button" class="btn btn-outline-info btn-sm" data-user-id="{{ user.id }}" onclick="resetUserPassword(this.dataset.userId)">
+                        <i class="bi bi-key me-1"></i>Reset Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>User Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>User ID:</strong></div>
+                    <div class="col-sm-9">
+                        <code>{{ user.id }}</code>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-300">Comments Posted</span>
-                        <span class="text-neon-green font-semibold">{{ stats.comment_count }}</span>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Username:</strong></div>
+                    <div class="col-sm-9">{{ user.username|e }}</div>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Role:</strong></div>
+                    <div class="col-sm-9">
+                        {% if user.role %}
+                            {{ user.role|title }}
+                        {% elif user.is_admin and user.is_admin() %}
+                            Administrator
+                        {% else %}
+                            Standard User
+                        {% endif %}
                     </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-300">Account Age</span>
-                        <span class="text-neon-green font-semibold">{{ (moment().utc() - user.created_at).days if moment else 'N/A' }} days</span>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Status:</strong></div>
+                    <div class="col-sm-9">
+                        {% if user.is_active %}
+                            <span class="text-success">
+                                <i class="bi bi-check-circle me-1"></i>Active
+                            </span>
+                        {% else %}
+                            <span class="text-danger">
+                                <i class="bi bi-x-circle me-1"></i>Inactive
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Created:</strong></div>
+                    <div class="col-sm-9">
+                        {% if user.created_at %}
+                            <time datetime="{{ user.created_at.isoformat() }}">
+                                {{ user.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                            </time>
+                        {% else %}
+                            <em class="text-muted">Unknown</em>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Last Login:</strong></div>
+                    <div class="col-sm-9">
+                        {% if user.last_login %}
+                            <time datetime="{{ user.last_login.isoformat() }}">
+                                {{ user.last_login.strftime('%B %d, %Y at %I:%M %p') }}
+                            </time>
+                        {% else %}
+                            <em class="text-muted">Never logged in</em>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-
-            <!-- Recent Activity Preview -->
-            <div class="bg-dark-gray rounded-lg shadow-lg p-6 mt-6">
-                <h2 class="text-xl font-semibold text-white mb-4">Recent Activity</h2>
-                {% if user.availability_entries or user.comments %}
-                <div class="space-y-3">
-                    {% for entry in user.availability_entries[:3] %}
-                    <div class="text-sm">
-                        <span class="text-gray-400">Availability:</span>
-                        <span class="text-white">{{ entry.date.strftime('%Y-%m-%d') }}</span>
+        </div>
+        
+        <!-- Activity Statistics -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-bar-chart me-2"></i>Activity Statistics</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-6 mb-3">
+                        <div class="stat-card p-3 bg-light rounded">
+                            <div class="stat-number display-6 text-primary">
+                                {{ stats.availability_count if stats and stats.availability_count is defined else 0 }}
+                            </div>
+                            <div class="stat-label text-muted small">Availability Entries</div>
+                        </div>
                     </div>
-                    {% endfor %}
-                    {% for comment in user.comments[:3] %}
-                    <div class="text-sm">
-                        <span class="text-gray-400">Comment:</span>
-                        <span class="text-white">{{ comment.content[:30] }}{% if comment.content|length > 30 %}...{% endif %}</span>
+                    <div class="col-md-6 mb-3">
+                        <div class="stat-card p-3 bg-light rounded">
+                            <div class="stat-number display-6 text-info">
+                                {{ stats.comment_count if stats and stats.comment_count is defined else 0 }}
+                            </div>
+                            <div class="stat-label text-muted small">Comments Posted</div>
+                        </div>
                     </div>
-                    {% endfor %}
                 </div>
+                
+                {% if stats and (stats.availability_count > 0 or stats.comment_count > 0) %}
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="progress" style="height: 20px;">
+                            {% set total_activity = stats.availability_count + stats.comment_count %}
+                            {% set availability_percent = (stats.availability_count / total_activity * 100) if total_activity > 0 else 0 %}
+                            {% set comment_percent = (stats.comment_count / total_activity * 100) if total_activity > 0 else 0 %}
+                            
+                            <div class="progress-bar bg-primary"
+                                role="progressbar"
+                                style="width: '{{ availability_percent }}%';"
+                                aria-valuenow="{{ availability_percent }}"
+                                aria-valuemin="0"
+                                aria-valuemax="100">
+                                Availability
+                            </div>
+                            <div class="progress-bar bg-info" 
+                                 role="progressbar" 
+                                 style="width: '{{ comment_percent }}%';"
+                                 aria-valuenow="{{ comment_percent }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                                Comments
+                            </div>
+                        </div>
+                        <small class="text-muted">Activity breakdown</small>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="card mt-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Recent Activity</h5>
+                <small class="text-muted">Last 30 days</small>
+            </div>
+            <div class="card-body">
+                {% if recent_activities %}
+                    <div class="timeline">
+                        {% for activity in recent_activities %}
+                        <div class="timeline-item d-flex mb-3">
+                            <div class="timeline-marker bg-{{ activity.type_color or 'secondary' }} rounded-circle me-3" 
+                                 style="width: 12px; height: 12px; margin-top: 6px; flex-shrink: 0;"></div>
+                            <div class="timeline-content">
+                                <div class="fw-medium">{{ activity.description }}</div>
+                                <small class="text-muted">
+                                    <time datetime="{{ activity.created_at.isoformat() }}">
+                                        {{ activity.created_at.strftime('%b %d, %Y at %I:%M %p') }}
+                                    </time>
+                                </small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 {% else %}
-                <p class="text-gray-400 text-sm">No recent activity</p>
+                    <div class="text-center py-4">
+                        <i class="bi bi-clock-history display-4 text-muted"></i>
+                        <p class="text-muted mt-2">No recent activity found</p>
+                    </div>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+            {% for category, message in messages %}
+                <div class="toast align-items-center text-white bg-{{ 'danger' if category == 'error' else 'success' if category == 'success' else 'info' }} border-0" 
+                     role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+                    <div class="d-flex">
+                        <div class="toast-body">{{ message }}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize toasts on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Bootstrap toasts
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function(toastEl) {
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+            return toast;
+        });
+    });
+
+    function confirmToggleStatus(button) {
+        const form = button.closest('form');
+        const username = form.querySelector('input[name="username"]').value;
+        const isActive = form.querySelector('input[name="is_active"]').value === 'true';
+        const action = isActive ? 'deactivate' : 'activate';
+        const message = `Are you sure you want to ${action} user "${username}"?`;
+        return confirm(message);
+    }
+
+    function confirmDeleteUser(button) {
+        const form = button.closest('form');
+        const username = form.querySelector('input[name="username"]').value;
+        const message = `Are you sure you want to permanently delete user "${username}"?\n\nThis action cannot be undone and will remove all associated data.`;
+        return confirm(message);
+    }
+
+    function viewUserActivity(userId) {
+        // TODO: Implement user activity viewer
+        alert(`View activity log for user ID ${userId} - Feature coming soon!`);
+    }
+
+    function resetUserPassword(userId) {
+        // TODO: Implement password reset functionality
+        const confirmed = confirm('Send password reset email to this user?');
+        if (confirmed) {
+            alert(`Password reset for user ID ${userId} - Feature coming soon!`);
+        }
+    }
+</script>
+
+<style>
+    .stat-card {
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .stat-number {
+        font-weight: 700;
+        line-height: 1;
+    }
+    
+    .timeline-marker {
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .user-avatar {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+</style>
 {% endblock %}

@@ -9,3 +9,5 @@ bcrypt==4.0.1
 python-dotenv==1.0.0
 bleach==6.0.0
 flask-talisman==1.1.0
+selenium==4.15.2
+pytest==7.4.3

@@ -46,7 +46,7 @@ def login():
             log_security_event('LOGIN_RATE_LIMITED', 
                              f'IP {client_ip} exceeded login attempts', 'WARNING')
             flash('Too many failed login attempts. Please try again later.', 'error')
-            return render_template('auth/login.html', form=form)
+            return render_template('auth/login_bootstrap.html', form=form)
         
         # Check if username is rate limited
         username_limited, _, _ = rate_limiter.is_login_rate_limited(
@@ -57,7 +57,7 @@ def login():
             log_security_event('USERNAME_RATE_LIMITED', 
                              f'Username {username} exceeded login attempts', 'WARNING')
             flash('Too many failed attempts for this account. Please try again later.', 'error')
-            return render_template('auth/login.html', form=form)
+            return render_template('auth/login_bootstrap.html', form=form)
         
         # Check if account is locked
         is_locked, unlock_time = rate_limiter.is_account_locked(username)
@@ -65,7 +65,7 @@ def login():
             log_security_event('ACCOUNT_LOCKED_ACCESS', 
                              f'Attempt to access locked account: {username}', 'WARNING')
             flash('This account is temporarily locked. Please try again later.', 'error')
-            return render_template('auth/login.html', form=form)
+            return render_template('auth/login_bootstrap.html', form=form)
         
         # Additional security validation
         username_valid, username_error = SecurityValidator.validate_username(username)
@@ -73,7 +73,7 @@ def login():
             rate_limiter.record_login_attempt(client_ip, success=False)
             rate_limiter.record_login_attempt(f"user_{username}", success=False)
             flash('Invalid username or password.', 'error')
-            return render_template('auth/login.html', form=form)
+            return render_template('auth/login_bootstrap.html', form=form)
         
         # Sanitize form data
         try:
@@ -87,7 +87,7 @@ def login():
             log_security_event('FORM_SANITIZATION_FAILED', 
                              f'Failed to sanitize login form: {str(e)}', 'ERROR')
             flash('Invalid request. Please try again.', 'error')
-            return render_template('auth/login.html', form=form)
+            return render_template('auth/login_bootstrap.html', form=form)
         
         user = User.query.filter_by(username=sanitized_data['username']).first()
         
@@ -98,7 +98,7 @@ def login():
                 log_security_event('BLOCKED_ACCOUNT_LOGIN', 
                                  f'Login attempt to blocked account: {username}', 'WARNING')
                 flash('Your account has been blocked. Please contact an administrator.', 'error')
-                return render_template('auth/login.html', form=form)
+                return render_template('auth/login_bootstrap.html', form=form)
             
             # Successful login - clear rate limiting
             rate_limiter.record_login_attempt(client_ip, success=True)
@@ -128,7 +128,7 @@ def login():
                              f'Failed login attempt for username: {username}', 'WARNING')
             flash('Invalid username or password.', 'error')
     
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login_bootstrap.html', form=form)
 
 
 @auth_bp.route('/register', methods=['GET', 'POST'])

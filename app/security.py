@@ -4,6 +4,7 @@ import re
 import html
 import bleach
 from flask import request, abort, current_app
+from flask_login import current_user
 from functools import wraps
 from datetime import datetime, timedelta
 import hashlib

@@ -16,31 +16,18 @@ admin_bp = Blueprint('admin', __name__)
 @admin_required
 def dashboard():
     """Admin dashboard with user management interface and recent actions."""
-    # Get user statistics for dashboard
-    total_users = User.query.count()
-    active_users = User.query.filter_by(is_active=True).count()
-    blocked_users = User.query.filter_by(is_active=False).count()
-    admin_users = User.query.filter_by(role='Admin').count()
+    # Get statistics using optimized queries
+    from ..db_queries import OptimizedQueries
+    user_stats = OptimizedQueries.get_user_statistics()
+    content_stats = OptimizedQueries.get_content_statistics()
     
-    # Get content statistics
-    total_availability = Availability.query.count()
-    future_availability = Availability.query.filter(Availability.date >= date.today()).count()
-    total_comments = Comment.query.count()
+    # Combine statistics
+    stats = {**user_stats, **content_stats}
     
-    stats = {
-        'total_users': total_users,
-        'active_users': active_users,
-        'blocked_users': blocked_users,
-        'admin_users': admin_users,
-        'total_availability': total_availability,
-        'future_availability': future_availability,
-        'total_comments': total_comments
-    }
+    # Get recent admin actions for audit trail using optimized queries
+    recent_actions = OptimizedQueries.get_recent_admin_actions(10)
     
-    # Get recent admin actions for audit trail
-    recent_actions = get_admin_actions(limit=10)
-    
-    return render_template('admin_dashboard.html', stats=stats, recent_actions=recent_actions)
+    return render_template('admin_dashboard_bootstrap.html', stats=stats, recent_actions=recent_actions)
 
 
 @admin_bp.route('/users')
@@ -56,13 +43,13 @@ def users():
         page=page, per_page=per_page, error_out=False
     )
     
-    return render_template('admin_users.html', users=users)
+    return render_template('admin_users_bootstrap.html', users=users)
 
 
 @admin_bp.route('/users/create', methods=['GET', 'POST'])
 @login_required
 @admin_required
-@rate_limit_endpoint(max_requests=5, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=15, window_minutes=10, per_user=True)
 def create_user():
     """Create new user functionality (admin only)."""
     form = RegistrationForm()
@@ -108,7 +95,7 @@ def create_user():
 @admin_bp.route('/users/<int:user_id>/toggle', methods=['POST'])
 @login_required
 @admin_required
-@rate_limit_endpoint(max_requests=10, window_minutes=5, per_user=True)
+@rate_limit_endpoint(max_requests=20, window_minutes=5, per_user=True)
 def toggle_user_status(user_id):
     """Block/unblock user system."""
     user = User.query.get_or_404(user_id)
@@ -157,7 +144,7 @@ def toggle_user_status(user_id):
 @admin_bp.route('/users/<int:user_id>/delete', methods=['POST'])
 @login_required
 @admin_required
-@rate_limit_endpoint(max_requests=3, window_minutes=10, per_user=True)
+@rate_limit_endpoint(max_requests=10, window_minutes=10, per_user=True)
 def delete_user(user_id):
     """Delete user functionality with data cleanup."""
     user = User.query.get_or_404(user_id)
